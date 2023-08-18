@@ -6,7 +6,7 @@ All programs will be written in Python.
 
 If you wanna clone this repo in your localhost, you must type the following commands
 ```shell
-$ git clone https://www.github.com/Its-Yayo/Activities-TC2038
+$ git clone https://www.github.com/Its-Yayo/Activities-TC2038.git
 $ cd Activities-TC2038
 ```
 
