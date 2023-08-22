@@ -1,5 +1,14 @@
 #!/usr/bin/python3
 
+#----------------------------------------------------------
+# Lab #1: Steganography
+# Image processing through bit manipulation.
+#
+# @date: 15-Aug-2023
+# @authors:
+#           A01754574 Luis Fernando De León Silvas
+#----------------------------------------------------------
+
 from PIL import Image
 
 INPUT_FILE_NAME = 'scarlett.png'
