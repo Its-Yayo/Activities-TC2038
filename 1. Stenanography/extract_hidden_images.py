@@ -18,6 +18,7 @@ from PIL import Image
 from os import path
 
 def extract_hidden_images(input_file: str) -> None:
+    # 3 exceptions will be raised if the input arg has an error
     try:
         img = Image.open(input_file)
     except Exception as e:
@@ -32,6 +33,7 @@ def extract_hidden_images(input_file: str) -> None:
         print("Image is not PNG")
         sys.exit(1)
 
+    # Each channel (R, G, B) will obtain the less significant bit inside the hidden image.
     channels = img.split()
 
     for i, channel in enumerate(channels):
