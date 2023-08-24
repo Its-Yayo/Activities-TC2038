@@ -15,7 +15,6 @@ import sys
 from PIL import Image
 
 def extract_hidden_images(input_file: str) -> None:
-    """ Extracts hidden images from a file """
     try:
         img = Image.open(input_file)
     except Exception as e:
