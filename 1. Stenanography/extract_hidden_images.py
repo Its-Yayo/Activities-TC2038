@@ -39,7 +39,7 @@ def extract_hidden_images(input_file: str) -> None:
         base_filename, _ = os.path.splitext(input_file)
         output_file = f"{base_filename}_channel_{i + 1}_{channel_name}.png"
 
-        hidden = Image.new('RGB', (width, height))
+        hidden = Image.new('1', (width, height))
 
         pixin = channel.load()
         pixout = hidden.load()
