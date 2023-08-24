@@ -8,6 +8,9 @@
 # @authors:
 #           A01754574 Luis Fernando De León Silva
 #           A01746999 Luis Eduardo Landeros Hernandez
+#
+# Repo: https://github.com/Its-Yayo/Activities-TC2038
+# Code under free license.
 #----------------------------------------------------------
 
 import sys
@@ -35,8 +38,8 @@ def extract_hidden_images(input_file: str) -> None:
         width, height = channel.size
 
         channel_name = ["red", "green", "blue"][i]
-        base_filename, _ = path.splitext(input_file)
-        output_file = f"{base_filename}_channel_{i + 1}_{channel_name}.png"
+        base_path, _ = path.splitext(input_file)
+        output_file = f"{base_path}_channel_{i + 1}_{channel_name}.png"
 
         hidden = Image.new('1', (width, height))
 
