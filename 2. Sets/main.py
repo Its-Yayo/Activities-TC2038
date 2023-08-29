@@ -26,6 +26,9 @@ class OrderedSet(Generic[T]):
         self.__sentinel = OrderedSet.__Node()
 
     def add(self, value: T) -> None:
+        if value in self:
+            return
+
         new_node = OrderedSet.__Node(value)
         new_node.next = self.__sentinel
         new_node.prev = self.__sentinel.prev
@@ -42,6 +45,13 @@ class OrderedSet(Generic[T]):
 
         return f'OrderedSet({result})'
 
+    def __contains__(self, value: T) -> bool:
+        current = self.__sentinel.next
+
+        while current != self.__sentinel:
+            if current.info == value:
+                return True
+            current = current.next
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet()
