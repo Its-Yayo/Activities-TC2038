@@ -28,6 +28,7 @@ class OrderedSet(Generic[T]):
             values = []
 
         self.__sentinel = OrderedSet.__Node()
+        self.__count = 0
 
         for elem in values:
             self.add(elem)
@@ -37,6 +38,7 @@ class OrderedSet(Generic[T]):
         if value in self:
             return
 
+        self.__count += 1
         new_node = OrderedSet.__Node(value)
         new_node.next = self.__sentinel
         new_node.prev = self.__sentinel.prev
@@ -62,6 +64,11 @@ class OrderedSet(Generic[T]):
             if current.info == value:
                 return True
             current = current.next
+        return False
+
+    # Complexity -> O(N)
+    def __len__(self) -> int:
+        return self.__count
 
 
 def main() -> None:
