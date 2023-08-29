@@ -22,8 +22,14 @@ class OrderedSet(Generic[T]):
 
     __sentinel: OrderedSet.__Node[T]
 
-    def __init__(self) -> None:
+    def __init__(self, values=None) -> None:
+        if values is None:
+            values = []
+
         self.__sentinel = OrderedSet.__Node()
+
+        for elem in values:
+            self.add(elem)
 
     def add(self, value: T) -> None:
         if value in self:
@@ -34,7 +40,6 @@ class OrderedSet(Generic[T]):
         new_node.prev = self.__sentinel.prev
         self.__sentinel.prev.next = new_node
         self.__sentinel.prev = new_node
-
 
     # Complexity -> O(N)
     def __repr__(self) -> str:
@@ -55,6 +60,7 @@ class OrderedSet(Generic[T]):
             if current.info == value:
                 return True
             current = current.next
+
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet()
