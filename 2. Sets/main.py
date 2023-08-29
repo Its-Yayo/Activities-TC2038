@@ -27,6 +27,10 @@ class OrderedSet(Generic[T]):
 
     def add(self, value: T) -> None:
         new_node = OrderedSet.__Node(value)
+        new_node.next = self.__sentinel
+        new_node.prev = self.__sentinel.prev
+        self.__sentinel.prev.next = new_node
+        self.__sentinel.prev = new_node
 
 
 def main() -> None:
