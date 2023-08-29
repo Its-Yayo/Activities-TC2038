@@ -22,6 +22,7 @@ class OrderedSet(Generic[T]):
 
     __sentinel: OrderedSet.__Node[T]
 
+    # Complexity -> O(1)
     def __init__(self, values=None) -> None:
         if values is None:
             values = []
@@ -31,6 +32,7 @@ class OrderedSet(Generic[T]):
         for elem in values:
             self.add(elem)
 
+    # Complexity -> O(N)
     def add(self, value: T) -> None:
         if value in self:
             return
