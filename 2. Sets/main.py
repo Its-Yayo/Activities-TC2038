@@ -32,6 +32,14 @@ class OrderedSet(Generic[T]):
         self.__sentinel.prev.next = new_node
         self.__sentinel.prev = new_node
 
+    def __repr__(self) -> str:
+        result: list[T] = []
+        current = self.__sentinel.next
+
+        while current != self.__sentinel:
+            if current.info is not None:
+                result.append(str(current.info))
+
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet()
