@@ -40,6 +40,8 @@ class OrderedSet(Generic[T]):
             if current.info is not None:
                 result.append(str(current.info))
 
+        return f'OrderedSet({result})'
+
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet()
