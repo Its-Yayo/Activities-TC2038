@@ -25,9 +25,13 @@ class OrderedSet(Generic[T]):
     def __init__(self) -> None:
         self.__sentinel = OrderedSet.__Node()
 
+    def add(self, value: T) -> None:
+        new_node = OrderedSet.__Node(value)
+
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet()
+
     print(a)
     print(f'{hash(a) = :x}')
     print(f'{a is None = }')
