@@ -45,6 +45,7 @@ class OrderedSet(Generic[T]):
 
         return f'OrderedSet({result})'
 
+    # Complexity -> O(N)
     def __contains__(self, value: T) -> bool:
         current = self.__sentinel.next
 
