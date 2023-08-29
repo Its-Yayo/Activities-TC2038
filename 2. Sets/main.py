@@ -22,7 +22,7 @@ class OrderedSet(Generic[T]):
 
     __sentinel: OrderedSet.__Node[T]
 
-    # Complexity -> O(1)
+    # Complexity -> O(N^2)
     def __init__(self, values=None) -> None:
         if values is None:
             values = []
