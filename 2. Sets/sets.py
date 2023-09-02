@@ -39,3 +39,5 @@ def main() -> None:
     for str_elem in o:
         print(f'{str_elem = }')
 
+if __name__ == '__main__':
+    main()
