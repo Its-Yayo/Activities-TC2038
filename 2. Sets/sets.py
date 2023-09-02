@@ -2,6 +2,7 @@ from ordered_set import OrderedSet
 
 x = [3, 6, 10, 2]
 
+
 def iterations() -> None:
     try:
         it = iter(x)
@@ -28,6 +29,7 @@ def iterations() -> None:
     else:
         print('stop')
 
+
 def main() -> None:
     iterations()
 
@@ -38,6 +40,7 @@ def main() -> None:
 
     for str_elem in o:
         print(f'{str_elem = }')
+
 
 if __name__ == '__main__':
     main()
