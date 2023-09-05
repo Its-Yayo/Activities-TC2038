@@ -1,5 +1,18 @@
 #!/usr/bin/python3
 
+#----------------------------------------------------------
+# Lab #2: Ordered Set Class
+# Ordered set implementation using a doubly linked list.
+#
+# @date: 17-Sep-2023
+# @authors:
+#           A01754574 Luis Fernando De León Silva
+#           A01746999 Luis Eduardo Landeros Hernandez
+#
+# Repo: https://github.com/Its-Yayo/Activities-TC2038
+# Code under free license.
+#----------------------------------------------------------
+
 from __future__ import annotations
 import sys
 from typing import Generic, TypeVar
