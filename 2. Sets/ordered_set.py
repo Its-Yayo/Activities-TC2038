@@ -104,6 +104,10 @@ class OrderedSet(Generic[T]):
     def __iter__(self) -> Iterator[T]:
         return OrderedSet.__Iterator(self.__sentinel)
 
+    # Complexity -> O(N)
+    def discard(self, value: T) -> None:
+        current = self.__sentinel.next
+
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet([4, 8, 15, 16, 23, 42])
