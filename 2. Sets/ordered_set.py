@@ -52,6 +52,7 @@ class OrderedSet(Generic[T]):
         def __next__(self) -> I:
             if self.__current == self.__sentinel:
                 raise StopIteration
+
             result = cast(I, self.__current.info)
             self.__current = self.__current.next
             return result
@@ -63,6 +64,7 @@ class OrderedSet(Generic[T]):
     def __init__(self, values: Iterable[T] = []) -> None:
         self.__sentinel = OrderedSet.__Node()
         self.__count = 0
+
         for elem in values:
             self.add(elem)
 
@@ -70,6 +72,7 @@ class OrderedSet(Generic[T]):
     def add(self, value: T) -> None:
         if value in self:
             return
+
         self.__count += 1
         new_node = OrderedSet.__Node(value)
         new_node.next = self.__sentinel
@@ -109,7 +112,11 @@ class OrderedSet(Generic[T]):
         current = self.__sentinel.next
 
         while current != self.__sentinel:
-            ...
+            if current.info == value:
+                current.prev.next = current.next
+                current.next.prev = current.prev
+
+                return
 
 
 def main() -> None:
