@@ -132,6 +132,15 @@ class OrderedSet(Generic[T]):
         else:
             return False
 
+    def __and__(self, other: OrderedSet[T]) -> OrderedSet[T]:
+        result: OrderedSet[T] = OrderedSet()
+
+        for elem in self:
+            if elem in other:
+                result.add(elem)
+
+        return result
+
     def __lt__(self, other: OrderedSet[T]) -> bool:
         ...
 
@@ -144,8 +153,6 @@ class OrderedSet(Generic[T]):
     def isdisjoint(self, other: OrderedSet[T]) -> bool:
         ...
 
-    def __and__(self, other: OrderedSet[T]) -> OrderedSet[T]:
-        ...
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet([4, 8, 15, 16, 23, 42])
