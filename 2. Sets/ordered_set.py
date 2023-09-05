@@ -1,10 +1,5 @@
 #!/usr/bin/python3
 
-<<<<<<< HEAD
-# ----------------------------------------------------------
-=======
-#----------------------------------------------------------
->>>>>>> origin/main
 # Lab #2: Ordered Set Class
 # Ordered set implementation using a doubly linked list.
 #
