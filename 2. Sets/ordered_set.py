@@ -141,6 +141,9 @@ class OrderedSet(Generic[T]):
 
         return result
 
+    def __or__(self, other: OrderedSet[T]) -> OrderedSet[T]:
+        ...
+
     def __lt__(self, other: OrderedSet[T]) -> bool:
         ...
 
@@ -151,6 +154,18 @@ class OrderedSet(Generic[T]):
         ...
 
     def isdisjoint(self, other: OrderedSet[T]) -> bool:
+        ...
+
+    def __sub__(self, other: OrderedSet[T]) -> OrderedSet[T]:
+        ...
+
+    def __xor__(self, other: OrderedSet[T]) -> OrderedSet[T]:
+        ...
+
+    def clear(self) -> None:
+        ...
+
+    def __pop__(self) -> T:
         ...
 
 
