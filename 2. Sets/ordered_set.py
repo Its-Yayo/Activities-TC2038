@@ -113,7 +113,7 @@ class OrderedSet(Generic[T]):
 
             current = current.next
 
-    # Complexity -> O(N^2)
+    # Complexity -> O(N*M)
     def __eq__(self, other: object) -> bool:
         if isinstance(other, OrderedSet) and len(self) == len(other):
             for elem in self:
