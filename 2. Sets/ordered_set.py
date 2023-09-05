@@ -108,6 +108,9 @@ class OrderedSet(Generic[T]):
     def discard(self, value: T) -> None:
         current = self.__sentinel.next
 
+        while current != self.__sentinel:
+            ...
+
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet([4, 8, 15, 16, 23, 42])
