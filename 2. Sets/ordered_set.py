@@ -88,12 +88,6 @@ class OrderedSet(Generic[T]):
 
     # Complexity -> O(N)
     def __contains__(self, value: T) -> bool:
-        # current = self.__sentinel.next
-        # while current != self.__sentinel:
-        #     if current.info == value:
-        #         return True
-        #     current = current.next
-        # return False
         for elem in self:
             if elem == value:
                 return True
@@ -120,6 +114,7 @@ class OrderedSet(Generic[T]):
 
             current = current.next
 
+    def __eq__(self, other: object) -> bool:
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet([4, 8, 15, 16, 23, 42])
