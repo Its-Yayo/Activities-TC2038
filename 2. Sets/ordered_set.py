@@ -23,7 +23,6 @@ I = TypeVar('I')
 
 
 class OrderedSet(Generic[T]):
-
     # FIXME: Order inherit values for __Node
     class __Node(Generic[N]):
         info: N | None
@@ -114,7 +113,14 @@ class OrderedSet(Generic[T]):
 
             current = current.next
 
+    # Complexity -> O(N)
     def __eq__(self, other: object) -> bool:
+        if isinstance(other, OrderedSet) and len(self) == len(other):
+            for elem in self:
+                if elem not in other:
+                    return False
+            return True
+
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet([4, 8, 15, 16, 23, 42])
@@ -147,9 +153,7 @@ def main() -> None:
     f = OrderedSet({'uno': 'one', 'dos': 'two', 'tres': 'three'}.items())
     print(f'{f = }')
 
+
 if __name__ == '__main__':
     main()
     sys.exit(1)
-
-
-
