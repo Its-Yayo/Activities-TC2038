@@ -115,8 +115,10 @@ class OrderedSet(Generic[T]):
             if current.info == value:
                 current.prev.next = current.next
                 current.next.prev = current.prev
-
+                self.__count -= 1
                 return
+
+            current = current.next
 
 
 def main() -> None:
