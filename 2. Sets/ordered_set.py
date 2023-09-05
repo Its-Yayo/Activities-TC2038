@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 
+<<<<<<< HEAD
 # ----------------------------------------------------------
+=======
+#----------------------------------------------------------
+>>>>>>> origin/main
 # Lab #2: Ordered Set Class
 # Ordered set implementation using a doubly linked list.
 #
@@ -11,6 +15,7 @@
 #
 # Repo: https://github.com/Its-Yayo/Activities-TC2038
 # Code under free license.
+<<<<<<< HEAD
 # ----------------------------------------------------------
 
 from __future__ import annotations
@@ -25,17 +30,36 @@ I = TypeVar('I')
 
 class OrderedSet(Generic[T]):
 
+=======
+#----------------------------------------------------------
+
+from __future__ import annotations
+import sys
+from typing import Generic, TypeVar
+
+T = TypeVar('T')
+N = TypeVar('N')
+
+
+class OrderedSet(Generic[T]):
+    
+>>>>>>> origin/main
     # FIXME: Order inherit values for __Node
     class __Node(Generic[N]):
         info: N | None
         next: OrderedSet.__Node[N]
         prev: OrderedSet.__Node[N]
 
+<<<<<<< HEAD
         def __init__(self, value: N | None = None) -> None:
+=======
+        def __init__(self, value: N | None) -> None:
+>>>>>>> origin/main
             self.info = value
             self.next = self
             self.prev = self
 
+<<<<<<< HEAD
     class __Iterator(Generic[I]):
         __sentinel: OrderedSet.__Node[I]
         __current: OrderedSet.__Node[I]
@@ -67,6 +91,22 @@ class OrderedSet(Generic[T]):
         for elem in values:
             self.add(elem)
 
+=======
+    __sentinel: OrderedSet.__Node[T]
+
+    
+    # Complexity -> O(N^2)
+    def __init__(self, values=None) -> None:
+        if values is None:
+            values = []
+
+        self.__sentinel = OrderedSet.__Node()
+        self.__count = 0
+
+        for elem in values:
+            self.add(elem)
+    
+>>>>>>> origin/main
     # Complexity -> O(N)
     def add(self, value: T) -> None:
         if value in self:
@@ -78,6 +118,7 @@ class OrderedSet(Generic[T]):
         new_node.prev = self.__sentinel.prev
         self.__sentinel.prev.next = new_node
         self.__sentinel.prev = new_node
+<<<<<<< HEAD
 
     # Complexity -> O(N)
     def __repr__(self) -> str:
@@ -110,11 +151,44 @@ class OrderedSet(Generic[T]):
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet([4, 8, 15, 16, 23, 42])
+=======
+    
+    # Complexity -> O(N)
+    def __repr__(self) -> str:
+        result: list[T] = []
+        current = self.__sentinel.next
+
+        while current != self.__sentinel:
+            if current.info is not None:
+                result.append(str(current.info))
+
+        return f'OrderedSet({result})'
+
+    # Complexity -> O(N)
+    def __contains__(self, value: T) -> bool:
+        current = self.__sentinel.next
+
+        while current != self.__sentinel:
+            if current.info == value:
+                return True
+            current = current.next
+        return False
+    
+    # Complexity -> O(N)
+    def __len__(self) -> int:
+        return self.__count
+
+
+def main() -> None:
+    a: OrderedSet[int] = OrderedSet()
+
+>>>>>>> origin/main
     print(a)
     print(f'{hash(a) = :x}')
     print(f'{a is None = }')
     print(f'{a == a = }')
     print(f'{repr(a) = }')
+<<<<<<< HEAD
     a.add(4)
     a.add(8)
     a.add(15)
@@ -138,6 +212,8 @@ def main() -> None:
     print(f'{e = }')
     f = OrderedSet({'uno': 'one', 'dos': 'two', 'tres': 'three'}.items())
     print(f'{f = }')
+=======
+>>>>>>> origin/main
 
 
 if __name__ == '__main__':
