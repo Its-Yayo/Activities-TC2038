@@ -123,6 +123,15 @@ class OrderedSet(Generic[T]):
         else:
             return False
 
+    def __le__(self, other: OrderedSet[T]) -> bool:
+        if len(self) <= len(other):
+            for elem in self:
+                if elem not in other:
+                    return False
+            return True
+        else:
+            return False
+
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet([4, 8, 15, 16, 23, 42])
