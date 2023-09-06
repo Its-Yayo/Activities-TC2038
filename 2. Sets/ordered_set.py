@@ -113,7 +113,7 @@ class OrderedSet(Generic[T]):
 
             current = current.next
 
-    # Complexity -> O(N*M)
+    # Complexity -> O(N^2)
     def __eq__(self, other: object) -> bool:
         if isinstance(other, OrderedSet) and len(self) == len(other):
             for elem in self:
@@ -123,6 +123,7 @@ class OrderedSet(Generic[T]):
         else:
             return False
 
+    # Complexity -> O(N^2)
     def __le__(self, other: OrderedSet[T]) -> bool:
         if len(self) <= len(other):
             for elem in self:
@@ -132,6 +133,7 @@ class OrderedSet(Generic[T]):
         else:
             return False
 
+    # Complexity -> O(N)
     def __and__(self, other: OrderedSet[T]) -> OrderedSet[T]:
         result: OrderedSet[T] = OrderedSet()
 
@@ -141,6 +143,7 @@ class OrderedSet(Generic[T]):
 
         return result
 
+    # Complexity -> O(N)
     def __or__(self, other: OrderedSet[T]) -> OrderedSet[T]:
         result: OrderedSet[T] = OrderedSet(self)
 
@@ -149,6 +152,7 @@ class OrderedSet(Generic[T]):
 
         return result
 
+    # Complexity -> O(N^2)
     def __lt__(self, other: OrderedSet[T]) -> bool:
         if len(self) < len(other):
             for elem in self:
@@ -158,6 +162,7 @@ class OrderedSet(Generic[T]):
         else:
             return False
 
+    # Complexity -> O(N^2)
     def __ge__(self, other: OrderedSet[T]) -> bool:
         if len(self) >= len(other):
             for elem in self:
@@ -167,6 +172,7 @@ class OrderedSet(Generic[T]):
         else:
             return False
 
+    # Complexity -> O(N^2)
     def __gt__(self, other: OrderedSet[T]) -> bool:
         if len(self) > len(other):
             for elem in self:
@@ -176,12 +182,14 @@ class OrderedSet(Generic[T]):
         else:
             return False
 
+    # Complexity -> O(N)
     def isdisjoint(self, other: OrderedSet[T]) -> bool:
         for elem in self:
             if elem in other:
                 return False
         return True
 
+    # Complexity -> O(N)
     def __sub__(self, other: OrderedSet[T]) -> OrderedSet[T]:
         result: OrderedSet[T] = OrderedSet(self)
 
@@ -190,13 +198,19 @@ class OrderedSet(Generic[T]):
 
         return result
 
+    # Complexity -> O(N)
+    def pop(self) -> T:
+        try:
+            result = next(iter(self))
+            self.discard(result)
+            return result
+        except StopIteration:
+            raise KeyError('Pop from an empty set')
+
     def __xor__(self, other: OrderedSet[T]) -> OrderedSet[T]:
         ...
 
     def clear(self) -> None:
-        ...
-
-    def __pop__(self) -> T:
         ...
 
 
