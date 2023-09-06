@@ -142,22 +142,53 @@ class OrderedSet(Generic[T]):
         return result
 
     def __or__(self, other: OrderedSet[T]) -> OrderedSet[T]:
-        ...
+        result: OrderedSet[T] = OrderedSet(self)
+
+        for elem in other:
+            result.add(elem)
+
+        return result
 
     def __lt__(self, other: OrderedSet[T]) -> bool:
-        ...
+        if len(self) < len(other):
+            for elem in self:
+                if elem not in other:
+                    return False
+            return True
+        else:
+            return False
 
     def __ge__(self, other: OrderedSet[T]) -> bool:
-        ...
+        if len(self) >= len(other):
+            for elem in self:
+                if elem not in other:
+                    return False
+            return True
+        else:
+            return False
 
     def __gt__(self, other: OrderedSet[T]) -> bool:
-        ...
+        if len(self) > len(other):
+            for elem in self:
+                if elem not in other:
+                    return False
+            return True
+        else:
+            return False
 
     def isdisjoint(self, other: OrderedSet[T]) -> bool:
-        ...
+        for elem in self:
+            if elem in other:
+                return False
+        return True
 
     def __sub__(self, other: OrderedSet[T]) -> OrderedSet[T]:
-        ...
+        result: OrderedSet[T] = OrderedSet(self)
+
+        for elem in other:
+            result.discard(elem)
+
+        return result
 
     def __xor__(self, other: OrderedSet[T]) -> OrderedSet[T]:
         ...
