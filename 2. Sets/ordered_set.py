@@ -201,8 +201,9 @@ class OrderedSet(Generic[T]):
     # Complexity -> O(N)
     def pop(self) -> T:
         try:
-            result = next(iter(self))
+            result: T = next(iter(self))
             self.discard(result)
+
             return result
         except StopIteration:
             raise KeyError('Pop from an empty set')
