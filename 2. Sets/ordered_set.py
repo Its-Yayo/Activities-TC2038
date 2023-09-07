@@ -216,6 +216,7 @@ class OrderedSet(Generic[T]):
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet([4, 8, 15, 16, 23, 42])
+
     print(a)
     print(f'{hash(a) = :x}')
     print(f'{a is None = }')
@@ -230,18 +231,23 @@ def main() -> None:
     print(f'{len(a) = }')
     print(f'{8 in a = }')
     print(f'{5 in a = }')
+
     b: OrderedSet[str] = OrderedSet()
     print(f'{b = }')
     b.add('hello')
     b.add('bye')
+
     c = OrderedSet(b)
     c.add('hi')
     print(f'{b = }')
     print(f'{c = }')
+
     d = OrderedSet('hello world')
     print(f'{d = }')
+
     e = OrderedSet((5, 6, 7, 9))
     print(f'{e = }')
+
     f = OrderedSet({'uno': 'one', 'dos': 'two', 'tres': 'three'}.items())
     print(f'{f = }')
 
