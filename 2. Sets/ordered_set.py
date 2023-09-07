@@ -203,7 +203,6 @@ class OrderedSet(Generic[T]):
         try:
             result: T = next(iter(self))
             self.discard(result)
-
             return result
         except StopIteration:
             raise KeyError('Pop from an empty set')
