@@ -216,7 +216,6 @@ class OrderedSet(Generic[T]):
 
 def main() -> None:
     a: OrderedSet[int] = OrderedSet([4, 8, 15, 16, 23, 42])
-
     print(a)
     print(f'{hash(a) = :x}')
     print(f'{a is None = }')
