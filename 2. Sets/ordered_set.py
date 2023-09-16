@@ -101,7 +101,7 @@ class OrderedSet(Generic[T]):
         return OrderedSet.__Iterator(self.__sentinel)
 
     # Complexity -> O(N)
-    def discard(self, value: T) -> None:
+    def remove(self, value: T) -> None:
         current = self.__sentinel.next
 
         while current != self.__sentinel:
@@ -112,6 +112,13 @@ class OrderedSet(Generic[T]):
                 return
 
             current = current.next
+
+    # Complexity -> O(N)
+    def discard(self, value: T) -> None:
+        if value not in self:
+            raise KeyError
+        else:
+            self.discard(value)
 
     # Complexity -> O(N^2)
     def __eq__(self, other: object) -> bool:
@@ -207,11 +214,18 @@ class OrderedSet(Generic[T]):
         except StopIteration:
             raise KeyError('Pop from an empty set')
 
+    # Complexity -> O(N)
     def __xor__(self, other: OrderedSet[T]) -> OrderedSet[T]:
-        ...
+        i: OrderedSet[T] = self.__and__(other)
+        u: OrderedSet[T] = self.__or__(other)
+        result: OrderedSet[T] = u.__sub__(i)
+        return result
 
+    # Complexity -> O(1)
     def clear(self) -> None:
-        ...
+        self.__sentinel.prev = self.__sentinel
+        self.__sentinel.next = self.__sentinel
+        self.__count = 0
 
 
 def main() -> None:
