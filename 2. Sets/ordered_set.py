@@ -3,7 +3,7 @@
 # Lab #2: Ordered Set Class
 # Ordered set implementation using a doubly linked list.
 #
-# @date: 17-Sep-2023
+# @date: 20-Sep-2023
 # @authors:
 #           A01754574 Luis Fernando De León Silva
 #           A01746999 Luis Eduardo Landeros Hernandez
