@@ -12,6 +12,13 @@ def power_set(s: list[C]) -> list[list[C]]:
         return [[]]
 
 
+def sorted_nicely(s: list[list[C]]) -> list[list[C]]:
+    def size_and_content(subset: list[C]) -> Tuple[int, list[C]]:
+        return len(subset), subset
+
+    return sorted(s, key=size_and_content)
+
+
 def main() -> None:
     pprint(power_set([]))
     pprint(power_set(['x']))
