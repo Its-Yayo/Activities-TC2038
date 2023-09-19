@@ -13,11 +13,12 @@ def power_set(s: list[C]) -> list[list[C]]:
 
 
 def main() -> None:
-    print(power_set([]))
-    print(power_set(['x']))
-    print(power_set(['x', 'y']))
-    print(power_set(['x', 'y', 'z']))
-    print(power_set(['w', 'x', 'y', 'z']))
+    pprint(power_set([]))
+    pprint(power_set(['x']))
+    pprint(power_set(['x', 'y']))
+    pprint(power_set(['x', 'y', 'z']))
+    pprint(power_set(['w', 'x', 'y', 'z']))
+    pprint(sorted(power_set(['w', 'x', 'y', 'z'])))
 
 
 if __name__ == '__main__':
