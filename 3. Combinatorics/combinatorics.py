@@ -20,12 +20,11 @@ def sorted_nicely(s: list[list[C]]) -> list[list[C]]:
 
 
 def main() -> None:
-    pprint(power_set([]))
-    pprint(power_set(['x']))
-    pprint(power_set(['x', 'y']))
-    pprint(power_set(['x', 'y', 'z']))
-    pprint(power_set(['w', 'x', 'y', 'z']))
-    pprint(sorted(power_set(['w', 'x', 'y', 'z'])))
+    pprint(sorted_nicely(power_set([])))
+    pprint(sorted_nicely(power_set(['x'])))
+    pprint(sorted_nicely(power_set(['x', 'y'])))
+    pprint(sorted_nicely(power_set(['x', 'y', 'z'])))
+    pprint(sorted_nicely(power_set(['w', 'x', 'y', 'z'])))
 
 
 if __name__ == '__main__':
