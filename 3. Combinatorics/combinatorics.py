@@ -19,12 +19,19 @@ def sorted_nicely(s: list[list[C]]) -> list[list[C]]:
     return sorted(s, key=size_and_content)
 
 
+def combinations(s: list[C], k: int) -> list[list[C]]:
+    return [subset for subset in power_set(s) if len(subset) == k]
+
+
 def main() -> None:
     pprint(sorted_nicely(power_set([])))
     pprint(sorted_nicely(power_set(['x'])))
     pprint(sorted_nicely(power_set(['x', 'y'])))
     pprint(sorted_nicely(power_set(['x', 'y', 'z'])))
     pprint(sorted_nicely(power_set(['w', 'x', 'y', 'z'])))
+    pprint(sorted_nicely(combinations(['x', 'y', 'z'], 0)))
+    pprint(sorted_nicely(combinations(['x', 'y', 'z'], 1)))
+    pprint(sorted_nicely(combinations(['x', 'y', 'z'], 2)))
 
 
 if __name__ == '__main__':
