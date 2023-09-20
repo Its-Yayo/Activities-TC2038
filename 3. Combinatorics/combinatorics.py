@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from comparable import C
 from typing import List, Tuple, TypeVar
 from pprint import pprint
