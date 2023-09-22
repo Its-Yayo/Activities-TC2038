@@ -34,7 +34,7 @@ def insert_everywhere(k: C, s: list[C]) -> list[list[C]]:
 
 
 def permute(s: list[C]) -> list[list[C]]:
-    ...
+
 
 
 def main() -> None:
@@ -47,6 +47,7 @@ def main() -> None:
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 1)))
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 2)))
     pprint(insert('x', ['y', 'z'], 0))
+    pprint(insert_everywhere('x', ['y', 'z']))
 
 
 if __name__ == '__main__':
