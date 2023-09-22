@@ -25,6 +25,14 @@ def combinations(s: list[C], k: int) -> list[list[C]]:
     return [subset for subset in power_set(s) if len(subset) == k]
 
 
+def insert(k: C, s: list[C], i: int) -> list[C]:
+    return s[:i] + [k] + s[i:]
+
+
+def permute(s: list[C]) -> list[list[C]]:
+    ...
+
+
 def main() -> None:
     pprint(sorted_nicely(power_set([])))
     pprint(sorted_nicely(power_set(['x'])))
@@ -34,6 +42,7 @@ def main() -> None:
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 0)))
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 1)))
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 2)))
+    pprint(insert('x', ['y', 'z'], 0))
 
 
 if __name__ == '__main__':
