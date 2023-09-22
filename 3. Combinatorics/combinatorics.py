@@ -34,7 +34,7 @@ def insert_everywhere(k: C, s: list[C]) -> list[list[C]]:
 
 
 def permute(s: list[C]) -> list[list[C]]:
-
+    ...
 
 
 def main() -> None:
