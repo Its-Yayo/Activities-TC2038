@@ -40,6 +40,10 @@ def permute(s: list[C]) -> list[list[C]]:
         return [[]]
 
 
+def permutations(s: list[C], k: int) -> list[list[C]]:
+    return sum([permute(t) for t in combinations(s, k)], [])
+
+
 def main() -> None:
     pprint(sorted_nicely(power_set([])))
     pprint(sorted_nicely(power_set(['x'])))
@@ -59,6 +63,8 @@ def main() -> None:
     pprint(permute(['X']))
     pprint(permute(['X', 'Y']))
     pprint(permute(['X', 'Y', 'Z']))
+
+    pprint(sorted_nicely(permutations(['x', 'y', 'z'], 2)))
 
 
 if __name__ == '__main__':
