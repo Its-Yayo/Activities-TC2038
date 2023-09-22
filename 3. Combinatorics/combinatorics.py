@@ -29,6 +29,10 @@ def insert(k: C, s: list[C], i: int) -> list[C]:
     return s[:i] + [k] + s[i:]
 
 
+def insert_everywhere(k: C, s: list[C]) -> list[list[C]]:
+    return [insert(k, s, i) for i in range(len(s) + 1)]
+
+
 def permute(s: list[C]) -> list[list[C]]:
     ...
 
