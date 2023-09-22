@@ -34,7 +34,10 @@ def insert_everywhere(k: C, s: list[C]) -> list[list[C]]:
 
 
 def permute(s: list[C]) -> list[list[C]]:
-    ...
+    if s:
+        return sum([insert_everywhere(s[0], p) for p in permute(s[1:])], [])
+    else:
+        return [[]]
 
 
 def main() -> None:
@@ -43,11 +46,19 @@ def main() -> None:
     pprint(sorted_nicely(power_set(['x', 'y'])))
     pprint(sorted_nicely(power_set(['x', 'y', 'z'])))
     pprint(sorted_nicely(power_set(['w', 'x', 'y', 'z'])))
+
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 0)))
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 1)))
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 2)))
+
     pprint(insert('x', ['y', 'z'], 0))
+
     pprint(insert_everywhere('x', ['y', 'z']))
+
+    pprint(permute([[]]))
+    pprint(permute(['X']))
+    pprint(permute(['X', 'Y']))
+    pprint(permute(['X', 'Y', 'Z']))
 
 
 if __name__ == '__main__':
