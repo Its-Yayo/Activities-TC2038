@@ -1,5 +1,18 @@
 #!/usr/bin/python3
 
+# Lab #3: Combinatorics
+# Combinatorics and Permutations
+#
+# @date: 29-Sep-2023
+# @authors:
+#           A01754574 Luis Fernando De León Silva
+#           A01746999 Luis Eduardo Landeros Hernandez
+#
+# Repo: https://github.com/Its-Yayo/Activities-TC2038
+# Code under free license.
+# ----------------------------------------------------------
+
+
 from comparable import C
 from typing import List, Tuple, TypeVar
 from pprint import pprint
@@ -42,6 +55,14 @@ def permute(s: list[C]) -> list[list[C]]:
 
 def permutations(s: list[C], k: int) -> list[list[C]]:
     return sum([permute(t) for t in combinations(s, k)], [])
+
+
+# FIXME: Usages still not tested.
+def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
+    if k == 0:
+        return [[]]
+    else:
+        return sum([insert_everywhere(s[0], p) for p in permutations_with_repetitions(s, k - 1)], [])
 
 
 def main() -> None:
