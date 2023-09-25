@@ -87,6 +87,8 @@ def main() -> None:
 
     pprint(sorted_nicely(permutations(['x', 'y', 'z'], 2)))
 
+    pprint(sorted_nicely(permutations_with_repetitions(['w', 'x', 'y', 'z'], 2)))
+
 
 if __name__ == '__main__':
     main()
