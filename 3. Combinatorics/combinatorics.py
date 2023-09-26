@@ -65,6 +65,10 @@ def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
         return sum([insert_everywhere(s[0], p) for p in permutations_with_repetitions(s, k - 1)], [])
 
 
+def combinations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
+    ...
+
+
 def main() -> None:
     pprint(sorted_nicely(power_set([])))
     pprint(sorted_nicely(power_set(['x'])))
