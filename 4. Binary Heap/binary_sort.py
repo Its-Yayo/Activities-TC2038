@@ -16,7 +16,7 @@ def heap_sort(data: list[int]) -> list[int]:
 
 
 def main() -> None:
-    ...
+    print(heap_sort([7, 2, 5, 1, 9, 3, 6, 4, 8]))
 
 
 if __name__ == '__main__':
