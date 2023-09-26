@@ -6,15 +6,12 @@ import sys
 
 def heap_sort(data: list[int]) -> list[int]:
     heap: list[int] = []
-
     for elem in data:
         heappush(heap, elem)
-
     result: list[int] = []
 
     while heap:
         result.append(heappop(heap))
-
     return result
 
 
