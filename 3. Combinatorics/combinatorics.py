@@ -59,11 +59,21 @@ def permutations(s: list[C], k: int) -> list[list[C]]:
 
 # FIXME: Usages still not tested.
 def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
-    ...
+    result = []
+
+    def permute_with_repetitions(s: list[C], k: int, p: list[C]) -> None:
+        if k == 0:
+            result.append(p)
+        else:
+            for elem in s:
+                permute_with_repetitions(s, k - 1, p + [elem])
+
+    permute_with_repetitions(s, k, [])
+    return result
 
 
 def combinations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
-    ...
+
 
 
 def main() -> None:
