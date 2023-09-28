@@ -75,6 +75,7 @@ def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
 def combinations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
     ...
 
+
 def main() -> None:
     pprint(sorted_nicely(power_set([])))
     pprint(sorted_nicely(power_set(['x'])))
@@ -98,8 +99,6 @@ def main() -> None:
     pprint(sorted_nicely(permutations(['x', 'y', 'z'], 2)))
 
     pprint(sorted_nicely(permutations_with_repetitions(['w', 'x', 'y', 'z'], 2)))
-
-
 
 
 if __name__ == '__main__':
