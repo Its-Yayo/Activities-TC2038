@@ -66,7 +66,10 @@ def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
 
 
 def combinations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
-    ...
+    if k == 0:
+        return [[]]
+    else:
+        return sum([insert_everywhere(s[0], p) for p in combinations_with_repetitions(s, k - 1)], [])
 
 
 def main() -> None:
