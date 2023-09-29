@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 
-from abc import ABC
-from csp import Constraint, CSP
-from typing import NamedTuple, Optional, Dict, List, Tuple
-from pprint import pprint
 import sys
+from abc import ABC
+from pprint import pprint
+from typing import NamedTuple, Optional, List
+
+from csp import Constraint, CSP
 
 Grid = List[List[int]]
 
