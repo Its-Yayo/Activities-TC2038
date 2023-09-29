@@ -58,7 +58,7 @@ def permutations(s: list[C], k: int) -> list[list[C]]:
 
 
 # FIXME: Usages still not tested.
-def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
+def permutations_with_repetition(s: list[C], k: int) -> list[list[C]]:
     result = []
 
     def permute_with_repetitions(s: list[C], k: int, p: list[C]) -> None:
@@ -68,7 +68,9 @@ def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
             for elem in s:
                 permute_with_repetitions(s, k - 1, p + [elem])
 
-    permute_with_repetitions(s, k, [])
+    if k and s:
+        permute_with_repetitions(s, k, [])
+
     return result
 
 
