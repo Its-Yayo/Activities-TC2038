@@ -41,6 +41,7 @@ class MagicPurpleConstraint(Constraint[GridLocation, int], ABC):
         for var, (row, col) in assignment.items():
             grid[row][col] = var
 
+
 def main() -> None:
     gl1 = GridLocation(1, 2)
     print(gl1.row)
