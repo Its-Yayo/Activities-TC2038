@@ -18,8 +18,8 @@ def check_square(grid: Grid) -> bool:
      (d, e, f),
      (g, h, i)) = grid
 
-    return ((a + b + c) == (d + e + f) == (g + h + i)           # rows
-            == (a + d + g) == (b + e + h) == (c + f + i))       # columns
+    return ((a + b + c) == (d + e + f) == (g + h + i)  # rows
+            == (a + d + g) == (b + e + h) == (c + f + i))  # columns
 
 
 class MagicPurpleConstraint(Constraint[GridLocation, int], ABC):
@@ -37,6 +37,9 @@ class MagicPurpleConstraint(Constraint[GridLocation, int], ABC):
         grid: Grid = [[0, 0, 0],
                       [0, 0, 0],
                       [0, 0, 0]]
+
+        for var, (row, col) in assignment.items():
+            grid[row][col] = var
 
 def main() -> None:
     gl1 = GridLocation(1, 2)
