@@ -16,6 +16,7 @@
 from comparable import C
 from typing import List, Tuple, TypeVar
 from pprint import pprint
+from math import factorial
 import sys
 
 
@@ -58,7 +59,7 @@ def permutations(s: list[C], k: int) -> list[list[C]]:
 
 
 # FIXME: Usages still not tested.
-def permutations_with_repetition(s: list[C], k: int) -> list[list[C]]:
+def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
     result = []
 
     def permute_with_repetitions(s: list[C], k: int, p: list[C]) -> None:
@@ -100,7 +101,11 @@ def main() -> None:
 
     pprint(sorted_nicely(permutations(['x', 'y', 'z'], 2)))
 
+    pprint(sorted_nicely(permutations_with_repetitions([], 0)))
     pprint(sorted_nicely(permutations_with_repetitions(['w', 'x', 'y', 'z'], 2)))
+
+    pprint(sorted_nicely(combinations_with_repetitions([], 0)))
+    pprint(sorted_nicely(combinations_with_repetitions(['w', 'x', 'y', 'z'], 2)))
 
 
 if __name__ == '__main__':
