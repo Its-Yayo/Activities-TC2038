@@ -23,7 +23,7 @@ def check_square(grid: Grid) -> bool:
             == (a + d + g) == (b + e + h) == (c + f + i))  # columns
 
 
-class MagicPurpleConstraint(Constraint[GridLocation, int], ABC):
+class MagicPuzzleConstraint(Constraint[int, GridLocation], ABC):
     def __init__(self, variables: list[int]):
         super().__init__(variables)
         self.variables: list[int] = variables
@@ -56,12 +56,15 @@ def main() -> None:
     # r, c = gl1
     # print(r, c)
 
-    variables: list[GridLocation] = [GridLocation(r, c) for r in range(3) for c in range(3)]
-    domains: dict[GridLocation, list[int]] = {var: list(range(1, 10)) for var in variables}
-    csp: CSP[GridLocation, int] = CSP(variables, domains)
+    variables: list[int] = list(range(1, 10))
+    all_grid_locations: list[GridLocation] = [GridLocation(r, c) for r in range(3) for c in range(3)]
+    domains: dict[int, list[GridLocation]] = {var: all_grid_locations for var in variables}
+    csp: CSP[int, GridLocation] = CSP(variables, domains)
 
-    csp.add_constraint(MagicPurpleConstraint(variables))
-    solution: Optional[Dict[GridLocation, int]] = csp.backtracking_search()
+    csp.add_constraint(MagicPuzzleConstraint(variables))
+    solution: Optional[dict[int, GridLocation]] = csp.backtracking_search()
+
+    pprint(solution) if solution else pprint("No solution found. :(")
 
 
 if __name__ == '__main__':
