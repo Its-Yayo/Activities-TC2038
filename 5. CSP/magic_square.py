@@ -56,9 +56,7 @@ def main() -> None:
 
     variables: list[int] = list(range(1, 10))
     all_grid_locations: list[GridLocation] = [GridLocation(r, c) for r in range(3) for c in range(3)]
-    domains: dict[GridLocation, list[int]] = {gl: variables for gl in all_grid_locations}
-
-
+    domains: dict[GridLocation, list[int]] = {var: all_grid_locations for var in variables}
 
 
 if __name__ == '__main__':
