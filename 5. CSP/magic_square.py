@@ -3,6 +3,7 @@
 from abc import ABC
 from csp import Constraint, CSP
 from typing import NamedTuple, Optional, Dict, List, Tuple
+from pprint import pprint
 import sys
 
 Grid = List[List[int]]
@@ -43,15 +44,18 @@ class MagicPurpleConstraint(Constraint[GridLocation, int], ABC):
 
 
 def main() -> None:
-    gl1 = GridLocation(1, 2)
-    print(gl1.row)
-    print(gl1.column)
+    # gl1 = GridLocation(1, 2)
+    # print(gl1.row)
+    # print(gl1.column)
 
-    gl2 = GridLocation(1, 2)
-    print(gl1 == gl2)
+    # gl2 = GridLocation(1, 2)
+    # print(gl1 == gl2)
 
-    r, c = gl1
-    print(r, c)
+    # r, c = gl1
+    # print(r, c)
+
+    variables: list[int] = list(range(1, 10))
+    all_grid_locations: list[GridLocation] = [GridLocation(r, c) for r in range(3) for c in range(3)]
 
 
 if __name__ == '__main__':
