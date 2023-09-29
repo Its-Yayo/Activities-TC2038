@@ -42,6 +42,8 @@ class MagicPurpleConstraint(Constraint[GridLocation, int], ABC):
         for var, (row, col) in assignment.items():
             grid[row][col] = var
 
+        return check_square(grid)
+
 
 def main() -> None:
     # gl1 = GridLocation(1, 2)
@@ -54,9 +56,12 @@ def main() -> None:
     # r, c = gl1
     # print(r, c)
 
-    variables: list[int] = list(range(1, 10))
-    all_grid_locations: list[GridLocation] = [GridLocation(r, c) for r in range(3) for c in range(3)]
-    domains: dict[GridLocation, list[int]] = {var: all_grid_locations for var in variables}
+    variables: list[GridLocation] = [GridLocation(r, c) for r in range(3) for c in range(3)]
+    domains: dict[GridLocation, list[int]] = {var: list(range(1, 10)) for var in variables}
+    csp: CSP[GridLocation, int] = CSP(variables, domains)
+
+    csp.add_constraint(MagicPurpleConstraint(variables))
+    solution: Optional[Dict[GridLocation, int]] = csp.backtracking_search()
 
 
 if __name__ == '__main__':
