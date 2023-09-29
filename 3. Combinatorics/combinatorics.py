@@ -104,23 +104,37 @@ def main() -> None:
     pprint(sorted_nicely(power_set(['x', 'y', 'z'])))
     pprint(sorted_nicely(power_set(['w', 'x', 'y', 'z'])))
 
+    print("--------------------------")
+
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 0)))
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 1)))
     pprint(sorted_nicely(combinations(['x', 'y', 'z'], 2)))
 
+    print("--------------------------")
+
     pprint(insert('x', ['y', 'z'], 0))
 
+    print("--------------------------")
+
     pprint(insert_everywhere('x', ['y', 'z']))
+
+    print("--------------------------")
 
     pprint(permute([[]]))
     pprint(permute(['X']))
     pprint(permute(['X', 'Y']))
     pprint(permute(['X', 'Y', 'Z']))
 
+    print("--------------------------")
+
     pprint(sorted_nicely(permutations(['x', 'y', 'z'], 2)))
+
+    print("--------------------------")
 
     pprint(sorted_nicely(permutations_with_repetitions([], 0)))
     pprint(sorted_nicely(permutations_with_repetitions(['w', 'x', 'y', 'z'], 2)))
+
+    print("--------------------------")
 
     pprint(sorted_nicely(combinations_with_repetitions([], 0)))
     pprint(sorted_nicely(combinations_with_repetitions(['w', 'x', 'y', 'z'], 2)))
