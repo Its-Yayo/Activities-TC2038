@@ -58,19 +58,18 @@ def permutations(s: list[C], k: int) -> list[list[C]]:
     return sum([permute(t) for t in combinations(s, k)], [])
 
 
-# FIXME: Usages still not tested.
 def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
     result = []
 
-    def permute_with_repetitions(s: list[C], k: int, p: list[C]) -> None:
-        if k == 0:
-            result.append(p)
-        else:
+    def generate_permutations(s: list[C], k: int, p: list[C]) -> None:
+        if k != 0:
             for elem in s:
-                permute_with_repetitions(s, k - 1, p + [elem])
+                generate_permutations(s, k - 1, p + [elem])
+        else:
+            result.append(p)
 
     if k and s:
-        permute_with_repetitions(s, k, [])
+        generate_permutations(s, k, [])
 
     return result
 
@@ -78,21 +77,22 @@ def permutations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
 def combinations_with_repetitions(s: list[C], k: int) -> list[list[C]]:
     result = []
 
-    def calculate_combinations_with_repetitions(n: int, k: int) -> int:
+    def formula(n: int, k: int) -> int:
         return factorial(n + k - 1) // (factorial(k) * factorial(n - 1))
 
-    def generate_combinations_with_repetitions(arr: list[C], k: int, current: list[C]) -> None:
-        if k == 0:
-            result.append(current[:])
-        else:
+    def generate_combinations(arr: list[C], k: int, current: list[C]) -> None:
+        if k != 0:
             for i, elem in enumerate(arr):
                 current.append(elem)
-                generate_combinations_with_repetitions(arr[i:], k - 1, current)
+                generate_combinations(arr[i:], k - 1, current)
                 current.pop()
+        else:
+            result.append(current[:])
+
 
     if k > 0 and s:
-        calculate_combinations_with_repetitions(len(s), k)
-        generate_combinations_with_repetitions(s, k, [])
+        formula(len(s), k)
+        generate_combinations(s, k, [])
 
     return result
 
