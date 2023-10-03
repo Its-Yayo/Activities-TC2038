@@ -77,9 +77,9 @@ def levelorder(root: Tree) -> Iterator[any]:
 
             if current:
                 value, left, right = current
-                yield value
                 queue.append(left)
                 queue.append(right)
+                yield value
 
 
 def main() -> None:
