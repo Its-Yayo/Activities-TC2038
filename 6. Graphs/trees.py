@@ -2,6 +2,7 @@
 
 from typing import Iterator, TypeVar, Generic, List, Optional
 from collections import deque
+import sys
 
 Tree = Optional[list[any]]
 
@@ -64,3 +65,13 @@ def postorder(root: Tree) -> Iterator[any]:
         yield from postorder(right)
         yield value
 
+
+def main() -> None:
+    print(list(inorder(t)))
+    print(list(preorder(t)))
+    print(list(postorder(t)))
+
+
+if __name__ == '__main__':
+    main()
+    sys.exit(1)
