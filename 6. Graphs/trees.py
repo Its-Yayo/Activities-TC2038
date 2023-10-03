@@ -67,19 +67,19 @@ def postorder(root: Tree) -> Iterator[any]:
 
 
 def levelorder(root: Tree) -> Iterator[any]:
-    if root:
-        # deque is a double-ended queue
-        queue = deque([root])
+    queue: deque[Tree] = deque()
+    queue.append(root)
 
-        while queue:
-            value, left, right = queue.popleft()
-            yield value
-            if left:
+    while queue:
+        node = queue.popleft()
+        if node:
+            current = queue.popleft()
+
+            if current:
+                value, left, right = current
+                yield value
                 queue.append(left)
-            if right:
                 queue.append(right)
-
-
 
 
 def main() -> None:
