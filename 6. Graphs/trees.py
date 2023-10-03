@@ -5,17 +5,14 @@ from collections import deque
 
 Tree = Optional[list[any]]
 
-"""
-Tree:
+"""  Tree:
            a
          /   \
         b     c        
        /       \      
       d         e    
                / \
-              f   g    
-        
-"""
+              f   g    """
 
 t: Tree = \
     ['a',
