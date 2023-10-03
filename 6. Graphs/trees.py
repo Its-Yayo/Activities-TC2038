@@ -6,14 +6,14 @@ import sys
 
 Tree = Optional[list[any]]
 
-"""  Tree:
-           a
-         /   \
-        b     c        
-       /       \      
-      d         e    
-               / \
-              f   g    """
+"""  t: Tree = 
+                   a
+                 /   \
+                b     c        
+               /       \      
+              d         e    
+                       / \
+                      f   g    """
 
 t: Tree = \
     ['a',
@@ -34,6 +34,7 @@ t: Tree = \
 # Inorder: d, b, a, c, f, e, g -> left, root, right
 # Preorder: a, b, d, c, e, f, g -> root, left, right
 # Postorder: d, b, f, g, e, c, a -> left, right, root
+# Level-order: a, b, c, d, e, f, g -> root, left, right
 
 # def inorder(tree: Tree) -> Iterator[any]:
 #     if tree:
@@ -63,6 +64,22 @@ def postorder(root: Tree) -> Iterator[any]:
         yield from postorder(left)
         yield from postorder(right)
         yield value
+
+
+def levelorder(root: Tree) -> Iterator[any]:
+    if root:
+        # deque is a double-ended queue
+        queue = deque([root])
+
+        while queue:
+            value, left, right = queue.popleft()
+            yield value
+            if left:
+                queue.append(left)
+            if right:
+                queue.append(right)
+
+
 
 
 def main() -> None:
