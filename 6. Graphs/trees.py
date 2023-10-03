@@ -43,13 +43,24 @@ t: Tree = \
 
 def inorder(root: Tree) -> Iterator[any]:
     if root:
+        value, left, right = root
+        yield from inorder(left)
+        yield value
+        yield from inorder(right)
 
 
+def preorder(root: Tree) -> Iterator[any]:
+    if root:
+        value, left, right = root
+        yield value
+        yield from preorder(left)
+        yield from preorder(right)
 
-def preorder(tree: Tree) -> Iterator[any]:
-    if tree is None:
-        return
-    yield tree[0]
-    yield from preorder(tree[1])
-    yield from preorder(tree[2])
+
+def postorder(root: Tree) -> Iterator[any]:
+    if root:
+        value, left, right = root
+        yield from postorder(left)
+        yield from postorder(right)
+        yield value
 
