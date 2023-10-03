@@ -37,12 +37,16 @@ t: Tree = \
 # Preorder: a, b, d, c, e, f, g -> root, left, right
 # Postorder: d, b, f, g, e, c, a -> left, right, root
 
-def inorder(tree: Tree) -> Iterator[any]:
-    if tree is None:
-        return
-    yield from inorder(tree[1])
-    yield tree[0]
-    yield from inorder(tree[2])
+# def inorder(tree: Tree) -> Iterator[any]:
+#     if tree is None:
+#         return
+#     yield from inorder(tree[1])
+#     yield tree[0]
+#     yield from inorder(tree[2])
+
+def inorder(root: Tree) -> Iterator[any]:
+    if root:
+
 
 
 def preorder(tree: Tree) -> Iterator[any]:
