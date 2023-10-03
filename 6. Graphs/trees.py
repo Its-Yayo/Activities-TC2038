@@ -71,21 +71,20 @@ def levelorder(root: Tree) -> Iterator[any]:
     queue.append(root)
 
     while queue:
-        node = queue.popleft()
-        if node:
-            current = queue.popleft()
+        current = queue.popleft()
 
-            if current:
-                value, left, right = current
-                queue.append(left)
-                queue.append(right)
-                yield value
+        if current:
+            value, left, right = current
+            yield value
+            queue.append(left)
+            queue.append(right)
 
 
 def main() -> None:
     print(list(inorder(t)))
     print(list(preorder(t)))
     print(list(postorder(t)))
+    print(list(levelorder(t)))
 
 
 if __name__ == '__main__':
