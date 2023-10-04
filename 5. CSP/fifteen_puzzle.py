@@ -25,7 +25,22 @@ Frame = tuple[tuple[int, ...], ...]
 
 
 def successors(frame: Frame) -> list[Frame]:
-    ...
+    result: list[Frame] = []
+    none_col, none_row = None, None
+    new_col, new_row = None, None
+
+    for row in range(0, 4):
+        for col in range(0, 4):
+            if frame[row][col] == 0:
+                none_col, none_row = col, row
+                break
+
+    # Possible movements
+    moves: list[frame] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+
+
+    return result
 
 
 def heuristic(frame: Frame) -> float:
