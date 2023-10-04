@@ -35,10 +35,17 @@ def successors(frame: Frame) -> list[Frame]:
                 none_col, none_row = col, row
                 break
 
-    # Possible movements
+    # Possible movements in up, down, left, right
     moves: list[frame] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
+    ## Iterate over possible movements
+    for move in moves:
+        new_row, new_col = none_row + move[0], none_col + move[1]
 
+        if 0 <= new_row < 4 and 0 <= new_col < 4:
+            new_frame: Frame = tuple(tuple(row) for row in frame)
+            new_frame[none_row][none_col], new_frame[new_row][new_col] = new_frame[new_row][new_col], new_frame[none_row][none_col]
+            result.append(new_frame)
 
     return result
 
