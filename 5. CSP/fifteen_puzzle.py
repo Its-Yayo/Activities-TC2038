@@ -45,12 +45,14 @@ def successors(frame: Frame) -> list[Frame]:
         if 0 <= new_row < 4 and 0 <= new_col < 4:
             new_frame: Frame = tuple(tuple(row) for row in frame)
             new_frame[none_row][none_col], new_frame[new_row][new_col] = new_frame[new_row][new_col], \
-            new_frame[none_row][none_col]
+                new_frame[none_row][none_col]
             result.append(new_frame)
 
     return result
 
 
+"""
+# My method
 def heuristic(frame: Frame) -> float:
     result: int = 0
     goal_frame = ((1, 2, 3, 4,
@@ -65,6 +67,18 @@ def heuristic(frame: Frame) -> float:
                 # Updates heuristic value if the value is out of place
                 result += 1
 
+    return float(result) """
+
+
+# Manhattan distance method
+def heuristic(frame: Frame) -> float:
+    result: int = 0
+
+    for row in range(0, 4):
+        for col in range(0, 4):
+            if frame[row][col] != 0:
+                result += abs(row - (frame[row][col] - 1) // 4) + abs(col - (frame[row][col] - 1) % 4)
+
     return float(result)
 
 
@@ -77,6 +91,7 @@ def goal_test(frame: Frame) -> bool:
 
     for row in range(0, 4):
         for col in range(0, 4):
+            # Checks if the frame is equal or not to the goal frame
             if frame[row][col] != goal_frame[row][col]:
                 result = False
                 break
