@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 # Lab #4: Fifteen Puzzle
-# Solve the Fifteen Puzzle using a Constraint Satisfaction Problem
+# Solve the Fifteen Puzzle using a Constraint Satisfaction Problem.
+# Every solution should be found in 16 moves or less.
 #
 # @date: 06-Oct-2023
 # @authors:
@@ -41,3 +42,12 @@ def solve_puzzle(frame: Frame) -> None:
     result: Optional[Node[Frame]] = astar(
         frame, goal_test, successors, heuristic)
     ...
+
+
+def main() -> None:
+    puzzle = ((2, 4, 5, 3,
+               1, 7, 6, 8,
+               9, 10, 11, 12,
+               13, 14, 15, 0))
+
+    solve_puzzle(puzzle)
