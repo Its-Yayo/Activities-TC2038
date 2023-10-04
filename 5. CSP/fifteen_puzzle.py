@@ -74,6 +74,7 @@ def heuristic(frame: Frame) -> float:
 def heuristic(frame: Frame) -> float:
     result: int = 0
 
+    # Iterate over the frame
     for row in range(0, 4):
         for col in range(0, 4):
             if frame[row][col] != 0:
