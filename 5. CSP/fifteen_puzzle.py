@@ -44,18 +44,44 @@ def successors(frame: Frame) -> list[Frame]:
 
         if 0 <= new_row < 4 and 0 <= new_col < 4:
             new_frame: Frame = tuple(tuple(row) for row in frame)
-            new_frame[none_row][none_col], new_frame[new_row][new_col] = new_frame[new_row][new_col], new_frame[none_row][none_col]
+            new_frame[none_row][none_col], new_frame[new_row][new_col] = new_frame[new_row][new_col], \
+            new_frame[none_row][none_col]
             result.append(new_frame)
 
     return result
 
 
 def heuristic(frame: Frame) -> float:
-    ...
+    result: int = 0
+    goal_frame = ((1, 2, 3, 4,
+                   5, 6, 7, 8,
+                   9, 10, 11, 12,
+                   13, 14, 15, 0),)
+
+    # Iterate over the frame
+    for row in range(0, 4):
+        for col in range(0, 4):
+            if frame[row][col] != goal_frame[row][col]:
+                # Updates heuristic value if the value is out of place
+                result += 1
+
+    return float(result)
 
 
 def goal_test(frame: Frame) -> bool:
-    ...
+    result: bool = True
+    goal_frame = ((1, 2, 3, 4,
+                   5, 6, 7, 8,
+                   9, 10, 11, 12,
+                   13, 14, 15, 0),)
+
+    for row in range(0, 4):
+        for col in range(0, 4):
+            if frame[row][col] != goal_frame[row][col]:
+                result = False
+                break
+
+    return result
 
 
 def solve_puzzle(frame: Frame) -> None:
