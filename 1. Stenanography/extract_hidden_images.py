@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-#----------------------------------------------------------
 # Lab #1: Steganography
 # Image processing through bit manipulation.
 #
@@ -11,11 +10,12 @@
 #
 # Repo: https://github.com/Its-Yayo/Activities-TC2038
 # Code under free license.
-#----------------------------------------------------------
+# ----------------------------------------------------------
 
 import sys
 from PIL import Image
 from os import path
+
 
 def extract_hidden_images(input_file: str) -> None:
     # 3 exceptions will be raised if the input arg has an error
@@ -54,6 +54,7 @@ def extract_hidden_images(input_file: str) -> None:
 
         hidden.save(output_file)
 
+
 def main() -> None:
     if len(sys.argv) != 2:
         print("Usage: python3 extract_hidden_images.py <input_file>")
@@ -62,7 +63,7 @@ def main() -> None:
     input_file = sys.argv[1]
     extract_hidden_images(input_file)
 
+
 if __name__ == '__main__':
     main()
     sys.exit(1)
-
