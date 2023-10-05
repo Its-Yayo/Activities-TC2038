@@ -115,7 +115,8 @@ def solve_puzzle(frame: Frame) -> None:
             for col in range(0, 4):
                 if current[row][col] == 0:
                     if current[row][col] != parent[row][col]:
-                        value = parent[row][col]  # Use the parent value
+                        # Needs to be the parent value because the current value is 0
+                        value = parent[row][col]
 
                         if col < 3 and current[row][col + 1] == value:
                             return f"Move {value} right"
