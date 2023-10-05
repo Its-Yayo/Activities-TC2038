@@ -23,6 +23,19 @@ from generic_search import astar, Node, node_to_path
 
 Frame = tuple[tuple[int, ...], ...]
 
+# Function that supports a tuple in a item assignment
+def item(frame: Frame, row: int, col: int) -> int:
+    none_col, none_row = None, None
+
+    for r in range(0, 4):
+        for c in range(0, 4):
+            if frame[r][c] == 0:
+                none_col, none_row = c, r
+                break
+
+    if 0 <= row < 4 and 0 <= col < 4:
+        new_frame: Frame = [list(row) for row in frame]
+
 
 def successors(frame: Frame) -> list[Frame]:
     result: list[Frame] = []
@@ -138,6 +151,7 @@ def solve_puzzle(frame: Frame) -> None:
         print(f"Solution requires {steps} steps")
 
         # Iterate over the path
+        # FIXME 1: Move is not being outputted correctly because of the node implementation
         for step, node in enumerate(path[1:], start=1):
             move = get_puzzle_movement(node)
             print(f"Step {step}: {move}")
