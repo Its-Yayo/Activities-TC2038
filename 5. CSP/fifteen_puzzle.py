@@ -114,7 +114,7 @@ def solve_puzzle(frame: Frame) -> None:
             for col in range(0, 4):
                 if current[row][col] == 0:
                     if current[row][col] != parent[row][col]:
-                        # Needs to be the parent value because the current value is 0
+                        # Needs to be the parent value because the current value is 0. Now it worksss
                         value = parent[row][col]
 
                         if col < 3 and current[row][col + 1] == value:
