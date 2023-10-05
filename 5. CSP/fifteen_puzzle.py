@@ -53,7 +53,6 @@ def successors(frame: Frame) -> list[Frame]:
     return result
 
 
-"""
 # My method
 def heuristic(frame: Frame) -> float:
     result: int = 0
@@ -69,20 +68,28 @@ def heuristic(frame: Frame) -> float:
                 # Updates heuristic value if the value is out of place
                 result += 1
 
-    return float(result) """
+    return float(result)
 
 
+"""
 # Manhattan distance method
 def heuristic(frame: Frame) -> float:
     result: int = 0
+    goal_row, goal_col = None, None
+    goal_frame = (((1, 2, 3, 4),
+                   (5, 6, 7, 8),
+                   (9, 10, 11, 12),
+                   (13, 14, 15, 0)))
 
     # Iterate over the frame
     for row in range(0, 4):
         for col in range(0, 4):
             if frame[row][col] != 0:
-                result += abs(row - (frame[row][col] - 1) // 4) + abs(col - (frame[row][col] - 1) % 4)
+                # Gets the goal row and column of the current value
+                goal_row, goal_col = divmod(frame[row][col] - 1, 4)
+                result += abs(row - goal_row) + abs(col - goal_col)
 
-    return float(result)
+    return float(result) """
 
 
 def goal_test(frame: Frame) -> bool:
@@ -147,10 +154,10 @@ def solve_puzzle(frame: Frame) -> None:
 
 
 def main() -> None:
-    puzzle = (((2, 3, 4, 8),
+    puzzle = ((2, 3, 4, 8),
               (1, 5, 7, 11),
-              (9, 6, 12, 15),
-              (13, 14, 10, 0)))
+              (9, 6, 12, 0),
+              (13, 14, 10, 15))
 
     # solve_puzzle(puzzle)
 
@@ -163,11 +170,11 @@ def main() -> None:
             print(row)
         print() """
 
-    """ Debugging heuristic function
+    """ Debugging heuristic function 
     print(heuristic(puzzle)) """
 
-    """ Debugging goal_test function
-    print(goal_test(puzzle)) """
+    """ Debugging goal_test function """
+    print(goal_test(puzzle))
 
 
 if __name__ == "__main__":
