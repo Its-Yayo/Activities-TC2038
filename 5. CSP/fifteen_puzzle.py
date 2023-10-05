@@ -55,10 +55,10 @@ def successors(frame: Frame) -> list[Frame]:
 # My method
 def heuristic(frame: Frame) -> float:
     result: int = 0
-    goal_frame = ((1, 2, 3, 4,
-                   5, 6, 7, 8,
-                   9, 10, 11, 12,
-                   13, 14, 15, 0),)
+    goal_frame = (((1, 2, 3, 4),
+                   (5, 6, 7, 8),
+                   (9, 10, 11, 12),
+                   (13, 14, 15, 0)))
 
     # Iterate over the frame
     for row in range(0, 4):
@@ -85,10 +85,10 @@ def heuristic(frame: Frame) -> float:
 
 def goal_test(frame: Frame) -> bool:
     result: bool = True
-    goal_frame = ((1, 2, 3, 4,
-                   5, 6, 7, 8,
-                   9, 10, 11, 12,
-                   13, 14, 15, 0),)
+    goal_frame = (((1, 2, 3, 4),
+                   (5, 6, 7, 8),
+                   (9, 10, 11, 12),
+                   (13, 14, 15, 0)))
 
     for row in range(0, 4):
         for col in range(0, 4):
@@ -144,10 +144,10 @@ def solve_puzzle(frame: Frame) -> None:
 
 
 def main() -> None:
-    puzzle = ((2, 3, 4, 8),
+    puzzle = (((2, 3, 4, 8),
               (1, 5, 7, 11),
               (9, 6, 12, 15),
-              (13, 14, 10, 0),)
+              (13, 14, 10, 0)))
 
     solve_puzzle(puzzle)
 
