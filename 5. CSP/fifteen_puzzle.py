@@ -112,7 +112,17 @@ def solve_puzzle(frame: Frame) -> None:
                     value = current[row][col]
 
                     if value == parent[row][col]:
-                        ...
+                        if col < 3 and current[row][col + 1] == 0:
+                            return f"Move {value} right"
+                        elif col > 0 and current[row][col - 1] == 0:
+                            return f"Move {value} left"
+                        elif row < 3 and current[row + 1][col] == 0:
+                            return f"Move {value} down"
+                        elif row > 0 and current[row - 1][col] == 0:
+                            return f"Move {value} up"
+                    else:
+                        if value == 0:
+                            return f"Move {parent[row][col]} up"
 
     result: Optional[Node[Frame]] = astar(frame, goal_test, successors, heuristic)
 
