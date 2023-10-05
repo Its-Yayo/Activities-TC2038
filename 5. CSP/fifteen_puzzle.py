@@ -15,7 +15,7 @@
 from __future__ import annotations
 
 import sys
-from typing import NamedTuple, Optional
+from typing import NamedTuple, Optional, Tuple
 
 from csp import Constraint, CSP
 from generic_search import astar, Node, node_to_path
@@ -113,21 +113,22 @@ def solve_puzzle(frame: Frame) -> None:
     def get_puzzle_movement(current: Frame, parent: Optional[Frame]) -> str:
         for row in range(0, 4):
             for col in range(0, 4):
-                if current[row][col] != parent[row][col]:
-                    value = current[row][col]
+                if current[row][col] == 0:
+                    if current[row][col] != parent[row][col]:
+                        value = current[row][col]
 
-                    if value == parent[row][col]:
-                        if col < 3 and current[row][col + 1] == 0:
-                            return f"Move {value} right"
-                        elif col > 0 and current[row][col - 1] == 0:
-                            return f"Move {value} left"
-                        elif row < 3 and current[row + 1][col] == 0:
-                            return f"Move {value} down"
-                        elif row > 0 and current[row - 1][col] == 0:
-                            return f"Move {value} up"
-                    else:
-                        if value == 0:
-                            return f"Move {parent[row][col]} up"
+                        if value == parent[row][col]:
+                            if col < 3 and current[row][col + 1] == 0:
+                                return f"Move {value} right"
+                            elif col > 0 and current[row][col - 1] == 0:
+                                return f"Move {value} left"
+                            elif row < 3 and current[row + 1][col] == 0:
+                                return f"Move {value} down"
+                            elif row > 0 and current[row - 1][col] == 0:
+                                return f"Move {value} up"
+                        else:
+                            if value == 0:
+                                return f"Move {parent[row][col]} up"
         raise ValueError("No movement")
 
     result: Optional[Node[Frame]] = astar(frame, goal_test, successors, heuristic)
@@ -151,10 +152,10 @@ def solve_puzzle(frame: Frame) -> None:
 def main() -> None:
     puzzle = ((2, 3, 4, 8),
               (1, 5, 7, 11),
-              (9, 6, 12, 0),
-              (13, 14, 10, 15))
+              (9, 6, 12, 15),
+              (13, 14, 10, 0))
 
-    solve_puzzle(puzzle)
+    # solve_puzzle(puzzle)
 
     """ Debugging successor function
     successor_frames = successors(puzzle)
