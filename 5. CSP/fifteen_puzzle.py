@@ -137,7 +137,10 @@ def solve_puzzle(frame: Frame) -> None:
         path = node_to_path(result)
         steps = len(path) - 1
 
-        print(f"Solution requires {steps} steps")
+        if steps == 1:
+            print(f"Solution requires {steps} step")
+        else:
+            print(f"Solution requires {steps} steps")
 
         for step in range(1, len(path)):
             move = get_puzzle_movement(path[step], path[step - 1] if step > 0 else None)
@@ -152,6 +155,7 @@ def main() -> None:
 
     solve_puzzle(puzzle)
 
+    # I needed debugging messages to check if any of the 3 functions were working properly for the puzzle
     """ Debugging successor function
     successor_frames = successors(puzzle)
 
