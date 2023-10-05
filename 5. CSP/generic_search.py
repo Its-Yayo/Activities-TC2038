@@ -1,27 +1,7 @@
 #!/usr/bin/python3
 
-# generic_search.py
-# From Classic Computer Science Problems in Python Chapter 2
-# Copyright 2018 David Kopec
-#
-# Modified by Ariel Ortiz, 2022. Updated to make use of type hints
-# as supported by Python 3.10 and lint correctly with mypy and
-# pycodestyle.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 from __future__ import annotations
-from typing import TypeVar, Generic, Callable, Any, Optional, Protocol
+from typing import TypeVar, Generic, Callable, Any, Optional, Protocol, List
 from collections import deque
 from collections.abc import Iterable, Sequence
 from heapq import heappush, heappop
@@ -103,6 +83,14 @@ class Node(Generic[T]):
     def __lt__(self, other: Node) -> bool:
         return (self.cost + self.heuristic) < (other.cost + other.heuristic)
 
+    def path(self) -> List[T]:
+        path = [self.state]
+        current_node = self
+        while current_node.parent:
+            current_node = current_node.parent
+            path.append(current_node.state)
+        path.reverse()
+        return path
 
 def dfs(
         initial: T,

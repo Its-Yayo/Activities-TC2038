@@ -123,8 +123,15 @@ def solve_puzzle(frame: Frame) -> None:
                     else:
                         if value == 0:
                             return f"Move {parent[row][col]} up"
+                else:
+                    raise ValueError("No movement found")
 
     result: Optional[Node[Frame]] = astar(frame, goal_test, successors, heuristic)
+
+    if result is None:
+        print("No solution found!")
+    else:
+        path = result.path()
 
 
 def main() -> None:
