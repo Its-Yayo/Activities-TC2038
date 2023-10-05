@@ -102,9 +102,9 @@ def goal_test(frame: Frame) -> bool:
 
 def solve_puzzle(frame: Frame) -> None:
     # Nested function that returns the movement of the blank space of the nodes
-    def get_puzzle_movement(node: Node[frame]) -> str:
+    def get_puzzle_movement(node: Node[Frame]) -> str:
         current = node.state
-        parent = node.parent.state
+        parent = node.parent.state if node.parent else None
 
         for row in range(0, 4):
             for col in range(0, 4):
@@ -130,13 +130,17 @@ def solve_puzzle(frame: Frame) -> None:
 
     if result is None:
         print("No solution found!")
+        sys.exit(1)
     else:
-        # Path function added in generic_search.py, returns the path of the node.
-        # Modified code in https://github.com/Its-Yayo/Activities-TC2038/blob/main/5.%20CSP/generic_search.py
-        path = result.path()
+        path = node_to_path(result)
+        steps = len(path) - 1
 
+        print(f"Solution requires {steps} steps")
 
-
+        # Iterate over the path
+        for step, node in enumerate(path[1:], start=1):
+            move = get_puzzle_movement(node)
+            print(f"Step {step}: {move}")
 
 
 def main() -> None:
@@ -150,4 +154,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    sys.exit(1)
+    sys.exit(0)
