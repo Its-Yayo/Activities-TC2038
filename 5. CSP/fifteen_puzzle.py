@@ -23,19 +23,6 @@ from generic_search import astar, Node, node_to_path
 
 Frame = tuple[tuple[int, ...], ...]
 
-# Function that supports a tuple in a item assignment
-def item(frame: Frame, row: int, col: int) -> int:
-    none_col, none_row = None, None
-
-    for r in range(0, 4):
-        for c in range(0, 4):
-            if frame[r][c] == 0:
-                none_col, none_row = c, r
-                break
-
-    if 0 <= row < 4 and 0 <= col < 4:
-        new_frame: Frame = [list(row) for row in frame]
-
 
 def successors(frame: Frame) -> list[Frame]:
     result: list[Frame] = []
@@ -56,9 +43,11 @@ def successors(frame: Frame) -> list[Frame]:
         new_row, new_col = none_row + move[0], none_col + move[1]
 
         if 0 <= new_row < 4 and 0 <= new_col < 4:
-            new_frame: Frame = tuple(tuple(row) for row in frame)
+            new_frame = [list(row) for row in frame]
             new_frame[none_row][none_col], new_frame[new_row][new_col] = new_frame[new_row][new_col], \
                 new_frame[none_row][none_col]
+            new_frame = tuple(tuple(row) for row in new_frame)
+
             result.append(new_frame)
 
     return result
@@ -163,7 +152,22 @@ def main() -> None:
               (9, 6, 12, 15),
               (13, 14, 10, 0)))
 
-    solve_puzzle(puzzle)
+    # solve_puzzle(puzzle)
+
+    """ Debugging successor function
+    successor_frames = successors(puzzle)
+
+    for idx, successor_puzzle in enumerate(successor_frames):
+        print(f"Successor {idx + 1}:")
+        for row in successor_puzzle:
+            print(row)
+        print() """
+
+    """ Debugging heuristic function
+    print(heuristic(puzzle)) """
+
+    """ Debugging goal_test function
+    print(goal_test(puzzle)) """
 
 
 if __name__ == "__main__":
