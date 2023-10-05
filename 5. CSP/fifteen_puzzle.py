@@ -136,10 +136,7 @@ def solve_puzzle(frame: Frame) -> None:
         path = node_to_path(result)
         steps = len(path) - 1
 
-        if steps == 1:
-            print(f"Solution requires {steps} step")
-        else:
-            print(f"Solution requires {steps} steps")
+        print(f"Solution requires {steps} step") if steps == 1 else print(f"Solution requires {steps} steps")
 
         for step in range(1, len(path)):
             move = get_puzzle_movement(path[step], path[step - 1] if step > 0 else None)
