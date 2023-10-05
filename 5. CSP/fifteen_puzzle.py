@@ -159,7 +159,7 @@ def main() -> None:
               (9, 6, 12, 0),
               (13, 14, 10, 15))
 
-    # solve_puzzle(puzzle)
+    solve_puzzle(puzzle)
 
     """ Debugging successor function
     successor_frames = successors(puzzle)
@@ -173,8 +173,8 @@ def main() -> None:
     """ Debugging heuristic function 
     print(heuristic(puzzle)) """
 
-    """ Debugging goal_test function """
-    print(goal_test(puzzle))
+    """ Debugging goal_test function 
+    print(goal_test(puzzle)) """
 
 
 if __name__ == "__main__":
