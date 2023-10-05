@@ -15,7 +15,6 @@
 from __future__ import annotations
 
 import sys
-from abc import ABC
 from typing import NamedTuple, Optional
 
 from csp import Constraint, CSP
@@ -111,10 +110,7 @@ def goal_test(frame: Frame) -> bool:
 
 def solve_puzzle(frame: Frame) -> None:
     # Nested function that returns the movement of the blank space of the nodes
-    def get_puzzle_movement(node: Node[Frame]) -> str:
-        current = node.state
-        parent = node.parent.state if node.parent else None
-
+    def get_puzzle_movement(current: Frame, parent: Optional[Frame]) -> str:
         for row in range(0, 4):
             for col in range(0, 4):
                 if current[row][col] != parent[row][col]:
@@ -132,8 +128,7 @@ def solve_puzzle(frame: Frame) -> None:
                     else:
                         if value == 0:
                             return f"Move {parent[row][col]} up"
-                else:
-                    raise ValueError("No movement found")
+        raise ValueError("No movement")
 
     result: Optional[Node[Frame]] = astar(frame, goal_test, successors, heuristic)
 
@@ -149,7 +144,7 @@ def solve_puzzle(frame: Frame) -> None:
         # Iterate over the path
         # FIXME 1: Move is not being outputted correctly because of the node implementation
         for step, node in enumerate(path[1:], start=1):
-            move = get_puzzle_movement(node)
+            move = get_puzzle_movement(node.state, node.parent.state if node.parent else None)
             print(f"Step {step}: {move}")
 
 

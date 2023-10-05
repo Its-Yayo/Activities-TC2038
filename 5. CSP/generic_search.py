@@ -1,7 +1,27 @@
 #!/usr/bin/python3
 
+# generic_search.py
+# From Classic Computer Science Problems in Python Chapter 2
+# Copyright 2018 David Kopec
+#
+# Modified by Ariel Ortiz, 2022. Updated to make use of type hints
+# as supported by Python 3.10 and lint correctly with mypy and
+# pycodestyle.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from __future__ import annotations
-from typing import TypeVar, Generic, Callable, Any, Optional, Protocol, List
+from typing import TypeVar, Generic, Callable, Any, Optional, Protocol
 from collections import deque
 from collections.abc import Iterable, Sequence
 from heapq import heappush, heappop
@@ -69,7 +89,12 @@ class Stack(Generic[T]):
 
 
 class Node(Generic[T]):
-    def __init__(self, state: T, parent: Optional[Node], cost: float = 0.0, heuristic: float = 0.0) -> None:
+    def __init__(
+            self,
+            state: T,
+            parent: Optional[Node],
+            cost: float = 0.0,
+            heuristic: float = 0.0) -> None:
         self.state: T = state
         self.parent: Optional[Node] = parent
         self.cost: float = cost
@@ -79,7 +104,10 @@ class Node(Generic[T]):
         return (self.cost + self.heuristic) < (other.cost + other.heuristic)
 
 
-def dfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], list[T]]) -> Optional[Node[T]]:
+def dfs(
+        initial: T,
+        goal_test: Callable[[T], bool],
+        successors: Callable[[T], list[T]]) -> Optional[Node[T]]:
     # frontier is where we've yet to go
     frontier: Stack[Node[T]] = Stack()
     frontier.push(Node(initial, None))
@@ -130,7 +158,10 @@ class Queue(Generic[T]):
         return repr(self._container)
 
 
-def bfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], list[T]]) -> Optional[Node[T]]:
+def bfs(
+        initial: T,
+        goal_test: Callable[[T], bool],
+        successors: Callable[[T], list[T]]) -> Optional[Node[T]]:
     # frontier is where we've yet to go
     frontier: Queue[Node[T]] = Queue()
     frontier.push(Node(initial, None))
@@ -171,7 +202,11 @@ class PriorityQueue(Generic[T]):
         return repr(self._container)
 
 
-def astar(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], list[T]], heuristic: Callable[[T], float]) -> Optional[Node[T]]:
+def astar(
+        initial: T,
+        goal_test: Callable[[T], bool],
+        successors: Callable[[T], list[T]],
+        heuristic: Callable[[T], float]) -> Optional[Node[T]]:
     # frontier is where we've yet to go
     frontier: PriorityQueue[Node[T]] = PriorityQueue()
     frontier.push(Node(initial, None, 0.0, heuristic(initial)))
@@ -199,7 +234,7 @@ def astar(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], 
 
 
 if __name__ == "__main__":
-    print(linear_contains([1, 5, 15, 15, 15, 15, 20], 5))  # True
+    print(linear_contains([1, 5, 15, 15, 15, 15, 20], 5))   # True
     print(binary_contains(["a", "d", "e", "f", "z"], "f"))  # True
     print(binary_contains(
-        ["john", "mark", "ronald", "sarah"], "sheila"))  # False
+        ["john", "mark", "ronald", "sarah"], "sheila"))     # False
