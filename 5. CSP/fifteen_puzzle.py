@@ -115,20 +115,16 @@ def solve_puzzle(frame: Frame) -> None:
             for col in range(0, 4):
                 if current[row][col] == 0:
                     if current[row][col] != parent[row][col]:
-                        value = current[row][col]
+                        value = parent[row][col]  # Use the parent value
 
-                        if value == parent[row][col]:
-                            if col < 3 and current[row][col + 1] == 0:
-                                return f"Move {value} right"
-                            elif col > 0 and current[row][col - 1] == 0:
-                                return f"Move {value} left"
-                            elif row < 3 and current[row + 1][col] == 0:
-                                return f"Move {value} down"
-                            elif row > 0 and current[row - 1][col] == 0:
-                                return f"Move {value} up"
-                        else:
-                            if value == 0:
-                                return f"Move {parent[row][col]} up"
+                        if col < 3 and current[row][col + 1] == value:
+                            return f"Move {value} right"
+                        elif col > 0 and current[row][col - 1] == value:
+                            return f"Move {value} left"
+                        elif row < 3 and current[row + 1][col] == value:
+                            return f"Move {value} down"
+                        elif row > 0 and current[row - 1][col] == value:
+                            return f"Move {value} up"
         raise ValueError("No movement")
 
     result: Optional[Node[Frame]] = astar(frame, goal_test, successors, heuristic)
@@ -142,8 +138,6 @@ def solve_puzzle(frame: Frame) -> None:
 
         print(f"Solution requires {steps} steps")
 
-        # Iterate over the path
-        # FIXME 1: Move is not being outputted correctly because of the node implementation
         for step in range(1, len(path)):
             move = get_puzzle_movement(path[step], path[step - 1] if step > 0 else None)
             print(f"Step {step}: {move}")
@@ -155,7 +149,7 @@ def main() -> None:
               (9, 6, 12, 15),
               (13, 14, 10, 0))
 
-    # solve_puzzle(puzzle)
+    solve_puzzle(puzzle)
 
     """ Debugging successor function
     successor_frames = successors(puzzle)
