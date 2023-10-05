@@ -42,6 +42,7 @@ def successors(frame: Frame) -> list[Frame]:
 
         if 0 <= new_row < 4 and 0 <= new_col < 4:
             new_frame = [list(row) for row in frame]
+            # Swaps the values of the blank space and the new space
             new_frame[none_row][none_col], new_frame[new_row][new_col] = new_frame[new_row][new_col], \
                 new_frame[none_row][none_col]
             new_frame = tuple(tuple(row) for row in new_frame)
