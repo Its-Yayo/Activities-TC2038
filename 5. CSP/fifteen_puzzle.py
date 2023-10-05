@@ -143,8 +143,8 @@ def solve_puzzle(frame: Frame) -> None:
 
         # Iterate over the path
         # FIXME 1: Move is not being outputted correctly because of the node implementation
-        for step, node in enumerate(path[1:], start=1):
-            move = get_puzzle_movement(node.state, node.parent.state if node.parent else None)
+        for step in range(1, len(path)):
+            move = get_puzzle_movement(path[step], path[step - 1] if step > 0 else None)
             print(f"Step {step}: {move}")
 
 
