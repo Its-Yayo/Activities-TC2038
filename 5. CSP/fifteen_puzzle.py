@@ -17,7 +17,6 @@ from __future__ import annotations
 import sys
 from typing import NamedTuple, Optional, Tuple
 
-from csp import Constraint, CSP
 from generic_search import astar, Node, node_to_path
 
 Frame = tuple[tuple[int, ...], ...]
