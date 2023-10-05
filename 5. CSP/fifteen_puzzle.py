@@ -173,8 +173,8 @@ def main() -> None:
     """ Debugging heuristic function 
     print(heuristic(puzzle)) """
 
-    """ Debugging goal_test function """
-    print(goal_test(puzzle))
+    """ Debugging goal_test function 
+    print(goal_test(puzzle)) """
 
 
 if __name__ == "__main__":
