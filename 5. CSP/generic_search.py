@@ -69,12 +69,7 @@ class Stack(Generic[T]):
 
 
 class Node(Generic[T]):
-    def __init__(
-            self,
-            state: T,
-            parent: Optional[Node],
-            cost: float = 0.0,
-            heuristic: float = 0.0) -> None:
+    def __init__(self, state: T, parent: Optional[Node], cost: float = 0.0, heuristic: float = 0.0) -> None:
         self.state: T = state
         self.parent: Optional[Node] = parent
         self.cost: float = cost
@@ -83,19 +78,8 @@ class Node(Generic[T]):
     def __lt__(self, other: Node) -> bool:
         return (self.cost + self.heuristic) < (other.cost + other.heuristic)
 
-    def path(self) -> List[T]:
-        path = [self.state]
-        current_node = self
-        while current_node.parent:
-            current_node = current_node.parent
-            path.append(current_node.state)
-        path.reverse()
-        return path
 
-def dfs(
-        initial: T,
-        goal_test: Callable[[T], bool],
-        successors: Callable[[T], list[T]]) -> Optional[Node[T]]:
+def dfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], list[T]]) -> Optional[Node[T]]:
     # frontier is where we've yet to go
     frontier: Stack[Node[T]] = Stack()
     frontier.push(Node(initial, None))
@@ -146,10 +130,7 @@ class Queue(Generic[T]):
         return repr(self._container)
 
 
-def bfs(
-        initial: T,
-        goal_test: Callable[[T], bool],
-        successors: Callable[[T], list[T]]) -> Optional[Node[T]]:
+def bfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], list[T]]) -> Optional[Node[T]]:
     # frontier is where we've yet to go
     frontier: Queue[Node[T]] = Queue()
     frontier.push(Node(initial, None))
@@ -190,11 +171,7 @@ class PriorityQueue(Generic[T]):
         return repr(self._container)
 
 
-def astar(
-        initial: T,
-        goal_test: Callable[[T], bool],
-        successors: Callable[[T], list[T]],
-        heuristic: Callable[[T], float]) -> Optional[Node[T]]:
+def astar(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], list[T]], heuristic: Callable[[T], float]) -> Optional[Node[T]]:
     # frontier is where we've yet to go
     frontier: PriorityQueue[Node[T]] = PriorityQueue()
     frontier.push(Node(initial, None, 0.0, heuristic(initial)))
@@ -222,7 +199,7 @@ def astar(
 
 
 if __name__ == "__main__":
-    print(linear_contains([1, 5, 15, 15, 15, 15, 20], 5))   # True
+    print(linear_contains([1, 5, 15, 15, 15, 15, 20], 5))  # True
     print(binary_contains(["a", "d", "e", "f", "z"], "f"))  # True
     print(binary_contains(
-        ["john", "mark", "ronald", "sarah"], "sheila"))     # False
+        ["john", "mark", "ronald", "sarah"], "sheila"))  # False

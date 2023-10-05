@@ -131,7 +131,12 @@ def solve_puzzle(frame: Frame) -> None:
     if result is None:
         print("No solution found!")
     else:
+        # Path function added in generic_search.py, returns the path of the node.
+        # Modified code in https://github.com/Its-Yayo/Activities-TC2038/blob/main/5.%20CSP/generic_search.py
         path = result.path()
+
+
+
 
 
 def main() -> None:
