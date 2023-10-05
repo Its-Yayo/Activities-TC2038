@@ -101,8 +101,20 @@ def goal_test(frame: Frame) -> bool:
 
 
 def solve_puzzle(frame: Frame) -> None:
+    # Nested function that returns the movement of the blank space of the nodes
+    def get_puzzle_movement(node: Node[frame]) -> str:
+        current = node.state
+        parent = node.parent.state
+
+        for row in range(0, 4):
+            for col in range(0, 4):
+                if current[row][col] != parent[row][col]:
+                    value = current[row][col]
+
+                    if value == parent[row][col]:
+                        ...
+
     result: Optional[Node[Frame]] = astar(frame, goal_test, successors, heuristic)
-    ...
 
 
 def main() -> None:
