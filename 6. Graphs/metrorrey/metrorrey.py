@@ -15,6 +15,18 @@ def main() -> None:
     metrorrey.add_edge_by_vertices("Talleres", "San Bernabe")
     metrorrey.add_edge_by_vertices("San Bernabe", "Unidad Modelo")
 
+    result: Optional[Node[str]] = bfs(
+        "Talleres",
+        lambda x: x = "Unidad Modelo",
+        metrorrey.neighbors_for_vertex()
+    )
+
+    if result:
+        path: list[str] = node_to_path(result)
+        print(path)
+    else:
+        print("No solution found.")
+
 
 if __name__ == '__main__':
     main()
