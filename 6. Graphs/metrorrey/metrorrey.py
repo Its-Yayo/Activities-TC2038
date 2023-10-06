@@ -18,7 +18,7 @@ def main() -> None:
     result: Optional[Node[str]] = bfs(
         "Talleres",
         lambda x: x == "Unidad Modelo",
-        metrorrey.neighbors_for_vertex()
+        metrorrey.neighbors_for_vertex
     )
 
     if result:
