@@ -10,7 +10,36 @@ from generic_search import bfs, node_to_path, Node
 def main() -> None:
     metrorrey: Graph[str] = Graph(["Talleres",
                                    "San Bernabe",
-                                   "Unidad Modelo"])
+                                   "Unidad Modelo",
+                                   "Aztlan",
+                                   "Peniteniana",
+                                   "Alfonso Reyes",
+                                   "Miltras",
+                                   "Simon Bolivar",
+                                   "Hospital",
+                                   "Edison",
+                                   "Central",
+                                   "Sendero",
+                                   "Santiago Tapia",
+                                   "San Nicholas",
+                                   "Anahuac",
+                                   "Universidad"
+                                   "Ninos Heroes",
+                                   "Regina",
+                                   "General Anaya",
+                                   "Cuauhtemoc",
+                                   "Del Golfo",
+                                   "Hospital Metropolitano",
+                                   "Los Angeles",
+                                   "Ruiz Cortines",
+                                   "Colonia Moderna",
+                                   "Metalurgicos",
+                                   "Felix U. Gomez",
+                                   "Parque Fundadora",
+                                   "Y. Ortega",
+                                   "Eloy Cavazos",
+                                   "Lerdo de Tejada",
+                                   "Exposicion"])
 
     metrorrey.add_edge_by_vertices("Talleres", "San Bernabe")
     metrorrey.add_edge_by_vertices("San Bernabe", "Unidad Modelo")
