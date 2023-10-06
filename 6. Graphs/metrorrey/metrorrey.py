@@ -8,7 +8,7 @@ from generic_search import bfs, node_to_path, Node
 
 
 def main() -> None:
-    metrorrey: Graph[str] = Graph(["Talleres,"
+    metrorrey: Graph[str] = Graph(["Talleres",
                                    "San Bernabe",
                                    "Unidad Modelo"])
 
@@ -17,7 +17,7 @@ def main() -> None:
 
     result: Optional[Node[str]] = bfs(
         "Talleres",
-        lambda x: x = "Unidad Modelo",
+        lambda x: x == "Unidad Modelo",
         metrorrey.neighbors_for_vertex()
     )
 
