@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import sys
+from dataclasses import dataclass
 from abc import ABC
 from pprint import pprint
 from typing import NamedTuple, Optional, List
@@ -10,6 +11,7 @@ from csp import Constraint, CSP
 Grid = List[List[int]]
 
 
+@dataclass
 class GridLocation(NamedTuple):
     row: int
     column: int

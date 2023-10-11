@@ -27,7 +27,6 @@ class CSP(Generic[V, D]):
         self.variables: list[V] = variables  # variables to be constrained
         self.domains: dict[V, list[D]] = domains  # domain of each variable
         self.constraints: dict[V, list[Constraint[V, D]]] = {}
-
         for variable in self.variables:
             self.constraints[variable] = []
             if variable not in self.domains:
@@ -49,7 +48,9 @@ class CSP(Generic[V, D]):
                 return False
         return True
 
-    def backtracking_search(self, assignment: dict[V, D] = {}) -> Optional[dict[V, D]]:
+    def backtracking_search(
+            self,
+            assignment: dict[V, D] = {}) -> Optional[dict[V, D]]:
         # assignment is complete if every variable is assigned (our base case)
         if len(assignment) == len(self.variables):
             return assignment
