@@ -20,6 +20,7 @@ from csp import Constraint, CSP
 from typing import Dict, List, Optional, Tuple
 
 
+# FIXME: Implement this function to solve the cryptarithmetic puzzle as a CSP.
 def solve_cryptarithmetic_puzzle(addends: list[str], answer: str) -> Optional[dict[str, int]]:
 
     letters = set("".join(addends + [answer]))
