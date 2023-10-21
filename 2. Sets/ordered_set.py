@@ -13,9 +13,11 @@
 # ----------------------------------------------------------
 
 from __future__ import annotations
+
+import sys
 from typing import Generic, TypeVar, cast
 from collections.abc import Iterable, Iterator
-import sys
+
 
 T = TypeVar('T')
 N = TypeVar('N')
