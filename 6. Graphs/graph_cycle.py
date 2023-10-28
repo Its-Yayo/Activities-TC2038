@@ -22,8 +22,37 @@ Graph = dict[str, list[str]]
 
 
 # TODO: Implement me!
+def get_cycle(current: str, parent: dict[str, str]) -> list[str]:
+    cycle: list[str] = []
+    cycle.append(current)
+
+    while parent[current] != current:
+        current = parent[current]
+        cycle.append(current)
+
+    return cycle[::-1]
+
+
+# TODO: Implement me!
 def has_cycle(initial: str, graph: Graph) -> Optional[list[str]]:
-    ...
+    visited: set[str] = set()
+    stack: list[str] = [initial]
+    parent: dict[str, str] = {initial: initial}
+
+    while stack:
+        current: str = stack.pop()
+
+        if current in visited:
+            return get_cycle(current, parent)
+
+        visited.add(current)
+
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                stack.append(neighbor)
+                parent[neighbor] = current
+
+    return None
 
 
 def main() -> None:
