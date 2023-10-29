@@ -39,6 +39,7 @@ def has_cycle(initial: str, graph: Graph) -> Optional[list[str]]:
             cycle.append(initial)
 
             return cycle
+            
     return None
 
 
