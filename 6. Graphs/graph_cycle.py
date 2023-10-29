@@ -16,14 +16,9 @@ from __future__ import annotations
 
 import sys
 from typing import Iterator, Optional
-from graph_search import dfs, bfs
+from graph_search import dfs_cycle
 
 Graph = dict[str, list[str]]
-
-
-# TODO: Implement me!
-def get_cycle(current: str, parent: dict[str, str]) -> list[str]:
-    ...
 
 
 # TODO: Implement me!

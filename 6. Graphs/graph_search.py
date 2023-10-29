@@ -47,6 +47,10 @@ def bfs(start: str, graph: Graph) -> Iterator[str]:
             queue.extend(graph[current])
             visited.add(current)
 
+def dfs_cycle(start: str, graph: Graph) -> Iterator[str]:
+    visited: set[str] = set()
+    ...
+
 
 def main() -> None:
     print(list(dfs('A', g)))
