@@ -53,10 +53,34 @@ def dfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[
     visited.add(vertex)
 
     for n in graph[vertex]:
-        ...
+        if n not in visited:
+            yield from dfs_cycle(n, vertex, graph, visited)
+        elif n != parent:
+            yield n
 
 
+def bfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[str]:
+    queue = deque()
 
+    while queue:
+        current: str = queue.popleft()
+
+        if current in visited:
+            if parent is not None and current != parent:
+                cycle = [vertex]
+
+                while current != vertex:
+                    cycle.append(parent)
+                    current = parent
+
+                cycle.append(vertex)
+                yield cycle
+
+        visited.add(current)
+
+        for n in graph[current]:
+            if n != parent:
+                queue.append((n, current))
 
 def main() -> None:
     print(list(dfs('A', g)))
