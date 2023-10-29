@@ -71,7 +71,7 @@ def bfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[
 
                 while current != vertex:
                     cycle.append(parent)
-                    current = parent
+                    parent = graph[parent]
 
                 cycle.append(vertex)
                 yield cycle
