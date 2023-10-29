@@ -21,9 +21,25 @@ from graph_search import dfs_cycle
 Graph = dict[str, list[str]]
 
 
-# TODO: Implement me!
+# TODO: Check implementation!
 def has_cycle(initial: str, graph: Graph) -> Optional[list[str]]:
-    ...
+    visited = set()
+    
+    for vertex in graph:
+        if vertex not in visited and dfs_cycle(vertex, None, graph, visited):
+            cycle: list = []
+            current = initial
+
+            # Loop detected
+            while current != initial:
+                cycle.append(current)
+                current = parent[current]
+
+            cycle.append(vertex)
+            cycle.append(initial)
+
+            return cycle
+    return None
 
 
 def main() -> None:
