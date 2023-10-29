@@ -59,6 +59,8 @@ def dfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[
         elif n != parent:
             yield n
 
+    return None
+
 
 # Implementations for BFS Cycle detection
 def bfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[str]:
@@ -83,6 +85,8 @@ def bfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[
         for n in graph[current]:
             if n != parent:
                 queue.append((n, current))
+
+    return None
 
 def main() -> None:
     print(list(dfs('A', g)))
