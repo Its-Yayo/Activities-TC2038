@@ -21,7 +21,7 @@ from graph_search import dfs_cycle
 Graph = dict[str, list[str]]
 
 
-# TODO: Check implementation!
+# Note: It uses the cycled dfs implementation in graph_search.py file!
 def has_cycle(initial: str, graph: Graph) -> Optional[list[str]]:
     visited = set()
     
