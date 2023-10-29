@@ -3,7 +3,7 @@
 # Lab #6: Graph Cycle Detection
 # Solve the graph cycle detection problem using DFS.
 #
-# @date: 02-Nov-2023
+# @date: 03-Nov-2023
 # @authors:
 #           A01754574 Luis Fernando De León Silva
 #           A01746999 Luis Eduardo Landeros Hernandez
