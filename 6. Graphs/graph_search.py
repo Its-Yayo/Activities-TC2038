@@ -19,6 +19,21 @@ g: Graph = {
     'G': ['F']
 }
 
+
+def bfs(start: str, graph: Graph) -> Iterator[str]:
+    queue: deque[str] = deque()
+    queue.append(start)
+    visited: set[str] = {start}
+
+    while queue:
+        current: str = queue.popleft()
+
+        if current not in visited:
+            yield current
+            queue.extend(graph[current])
+            visited.add(current)
+
+
 # FIXME: Update usages
 def dfs(start: str, graph: Graph) -> Iterator[str]:
     stack: list[str] = []
@@ -34,22 +49,13 @@ def dfs(start: str, graph: Graph) -> Iterator[str]:
             visited.add(current)
 
 
-def bfs(start: str, graph: Graph) -> Iterator[str]:
-    queue: deque[str] = deque()
-    queue.append(start)
-    visited: set[str] = {start}
+def dfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[str]:
+    visited.add(vertex)
 
-    while queue:
-        current: str = queue.popleft()
+    for n in graph[vertex]:
+        ...
 
-        if current not in visited:
-            yield current
-            queue.extend(graph[current])
-            visited.add(current)
 
-def dfs_cycle(start: str, graph: Graph) -> Iterator[str]:
-    visited: set[str] = set()
-    ...
 
 
 def main() -> None:
