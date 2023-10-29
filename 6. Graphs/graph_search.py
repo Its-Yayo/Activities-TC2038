@@ -49,6 +49,7 @@ def dfs(start: str, graph: Graph) -> Iterator[str]:
             visited.add(current)
 
 
+# Implementations for DFS Cycle detection
 def dfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[str]:
     visited.add(vertex)
 
@@ -59,6 +60,7 @@ def dfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[
             yield n
 
 
+# Implementations for BFS Cycle detection
 def bfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[str]:
     queue = deque()
 
