@@ -57,6 +57,7 @@ def dfs_cycle(vertex: str, parent: str, graph: Dict[str, List[str]], visited: se
         if n not in visited:
             parent_dict[n] = vertex
             result = dfs_cycle(n, vertex, graph, visited, parent_dict)
+
             if result is not None:
                 return result
         elif n != parent and parent_dict.get(vertex) != n:
@@ -66,10 +67,7 @@ def dfs_cycle(vertex: str, parent: str, graph: Dict[str, List[str]], visited: se
             while current != n:
                 cycle.append(current)
                 current = parent_dict[current]
-
             cycle.append(n)
-            cycle.append(vertex)
-
             return cycle
 
     return None
