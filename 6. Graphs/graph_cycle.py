@@ -15,7 +15,7 @@
 from __future__ import annotations
 
 import sys
-from typing import Iterator, Optional
+from typing import Iterator, Optional, Dict, List
 from graph_search import dfs_cycle
 
 Graph = dict[str, list[str]]
@@ -23,24 +23,16 @@ Graph = dict[str, list[str]]
 
 # Note: It uses the cycled dfs implementation in graph_search.py file!
 # FIXME : Check the dfs_cycle function
-def has_cycle(initial: str, graph: Graph) -> Optional[list[str]]:
+def has_cycle(initial: str, graph: Dict[str, List[str]]) -> Optional[List[str]]:
     visited = set()
-    
+    parent_dict = {}  # Dictionary to keep track of the parent of each vertex
+
     for vertex in graph:
-        if vertex not in visited and dfs_cycle(vertex, None, graph, visited):
-            cycle: list = []
-            current = initial
+        if vertex not in visited:
+            result = dfs_cycle(vertex, None, graph, visited, parent_dict)
+            if result is not None:
+                return result
 
-            # Loop detected
-            while current != initial:
-                cycle.append(current)
-                current = parent[current]
-
-            cycle.append(vertex)
-            cycle.append(initial)
-
-            return cycle
-            
     return None
 
 

@@ -50,7 +50,6 @@ def dfs(start: str, graph: Graph) -> Iterator[str]:
 
 
 # Implementations for DFS Cycle detection
-# Implementations for DFS Cycle detection
 def dfs_cycle(vertex: str, parent: str, graph: Dict[str, List[str]], visited: set, parent_dict: Dict[str, str]) -> Optional[List[str]]:
     visited.add(vertex)
 
