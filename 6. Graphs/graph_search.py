@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import sys
-from typing import Iterator
+from typing import Iterator, Dict, List, Optional
 from collections import deque
 
 
@@ -50,14 +50,28 @@ def dfs(start: str, graph: Graph) -> Iterator[str]:
 
 
 # Implementations for DFS Cycle detection
-def dfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[str]:
+# Implementations for DFS Cycle detection
+def dfs_cycle(vertex: str, parent: str, graph: Dict[str, List[str]], visited: set, parent_dict: Dict[str, str]) -> Optional[List[str]]:
     visited.add(vertex)
 
     for n in graph[vertex]:
         if n not in visited:
-            yield from dfs_cycle(n, vertex, graph, visited)
-        elif n != parent:
-            yield n
+            parent_dict[n] = vertex
+            result = dfs_cycle(n, vertex, graph, visited, parent_dict)
+            if result is not None:
+                return result
+        elif n != parent and parent_dict.get(vertex) != n:
+            cycle = [n]
+            current = vertex
+
+            while current != n:
+                cycle.append(current)
+                current = parent_dict[current]
+
+            cycle.append(n)
+            cycle.append(vertex)
+
+            return cycle
 
     return None
 
