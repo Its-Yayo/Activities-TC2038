@@ -5,7 +5,7 @@ from heapq import heapify, heappop
 from typing import Iterator, Optional, NamedTuple
 
 # FIXME: Fix object type
-WeightedGraph = dict[str, set(tuple(str, int))]
+WeightedGraph = dict[str, set[tuple(str, int)]]
 
 
 class Edge(NamedTuple):
@@ -38,7 +38,12 @@ def main() -> None:
     e1: Edge = Edge(4, 'A', 'B')
     e2: Edge = Edge(4, 'A', 'B')
 
-    print(e1 == e2)
+    s: set[Edge] = set()
+    s.add(e1)
+    s.add(e2)
+
+    print(s)
+
 
 
 if __name__ == '__main__':
