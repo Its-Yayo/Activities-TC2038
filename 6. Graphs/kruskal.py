@@ -5,7 +5,7 @@ from heapq import heapify, heappop
 from typing import Iterator, Optional, NamedTuple
 
 # FIXME: Fix object type
-WeightedGraph = dict[str, set[tuple(str, int)]]
+WeightedGraph = dict[str, set[tuple[str, int]]]
 
 
 class Edge(NamedTuple):
