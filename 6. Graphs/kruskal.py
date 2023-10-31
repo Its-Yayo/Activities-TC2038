@@ -21,6 +21,9 @@ class Edge(NamedTuple):
         else:
             return False
 
+    def __hash__(self, other: object) -> int:
+        ...
+
 
 def main() -> None:
     g1: WeightedGraph = {
