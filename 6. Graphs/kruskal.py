@@ -21,8 +21,8 @@ class Edge(NamedTuple):
         else:
             return False
 
-    def __hash__(self, other: object) -> int:
-        ...
+    def __hash__(self) -> int:
+        return hash(self.weight) + hash(self.u) + hash(self.v)
 
 
 def main() -> None:
