@@ -28,11 +28,11 @@ def has_cycle(initial: str, graph: Dict[str, List[str]]) -> Optional[List[str]]:
     parent_dict = {}  # Dictionary to keep track of the parent of each vertex
 
     for vertex in graph:
-        if vertex not in visited:d
+        if vertex not in visited:
             # Method called from graph_search.py
-            result = dfs_cycle(vertex, None, graph, visited, parent_dict)
+            result = dfs_cycle(vertex, graph, visited, parent_dict)
             if result is not None:
-                return result
+                return result[::-1]
 
     return None
 

@@ -50,17 +50,16 @@ def dfs(start: str, graph: Graph) -> Iterator[str]:
 
 
 # Implementations for DFS Cycle detection
-def dfs_cycle(vertex: str, parent: str, graph: Dict[str, List[str]], visited: set, parent_dict: Dict[str, str]) -> Optional[List[str]]:
+def dfs_cycle(vertex: str, graph: Dict[str, List[str]], visited: set, parent_dict: Dict[str, str]) -> Optional[List[str]]:
     visited.add(vertex)
 
     for n in graph[vertex]:
         if n not in visited:
             parent_dict[n] = vertex
-            result = dfs_cycle(n, vertex, graph, visited, parent_dict)
-
+            result = dfs_cycle(n, graph, visited, parent_dict)
             if result is not None:
                 return result
-        elif n != parent and parent_dict.get(vertex) != n:
+        elif parent_dict.get(vertex) is not None and n != parent_dict[vertex]:
             cycle = [n]
             current = vertex
 
