@@ -16,9 +16,33 @@ from __future__ import annotations
 
 import sys
 from typing import Iterator, Optional, Dict, List
-from graph_search import dfs_cycle
 
 Graph = Dict[str, List[str]]
+
+
+# Implementations for DFS Cycle detection
+def dfs_cycle(vertex: str, graph: Dict[str, List[str]], visited: set, parent_dict: Dict[str, str]) -> Optional[List[str]]:
+    visited.add(vertex)
+
+    for n in graph[vertex]:
+        if n not in visited:
+            parent_dict[n] = vertex
+            result = dfs_cycle(n, graph, visited, parent_dict)
+
+            if result is not None:
+                return result
+
+        elif parent_dict.get(vertex) is not None and n != parent_dict[vertex]:
+            cycle = [n]
+            current = vertex
+
+            while current != n:
+                cycle.append(current)
+                current = parent_dict[current]
+            cycle.append(n)
+            return cycle
+
+    return None
 
 
 # Note: It uses the cycled dfs implementation in graph_search.py file!
@@ -32,7 +56,6 @@ def has_cycle(initial: str, graph: Graph) -> Optional[List[str]]:
 
     for vertex in graph:
         if vertex not in visited:
-            # Method called from graph_search.py
             result = dfs_cycle(vertex, graph, visited, parent_dict)
             if result is not None:
                 return result[::-1]
