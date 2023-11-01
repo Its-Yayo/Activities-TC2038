@@ -48,7 +48,7 @@ def dfs(start: str, graph: Graph) -> Iterator[str]:
             stack.extend(graph[current])
             visited.add(current)
 
-
+'''
 # Implementations for DFS Cycle detection
 def dfs_cycle(vertex: str, graph: Dict[str, List[str]], visited: set, parent_dict: Dict[str, str]) -> Optional[List[str]]:
     visited.add(vertex)
@@ -98,7 +98,7 @@ def bfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[
             if n != parent:
                 queue.append((n, current))
 
-    return None
+    return None '''
 
 def main() -> None:
     print(list(dfs('A', g)))
