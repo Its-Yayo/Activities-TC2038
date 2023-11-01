@@ -18,13 +18,17 @@ import sys
 from typing import Iterator, Optional, Dict, List
 from graph_search import dfs_cycle
 
-Graph = dict[str, list[str]]
+Graph = Dict[str, List[str]]
 
 
 # Note: It uses the cycled dfs implementation in graph_search.py file!
-def has_cycle(initial: str, graph: Dict[str, List[str]]) -> Optional[List[str]]:
+def has_cycle(initial: str, graph: Graph) -> Optional[List[str]]:
     visited = set()
     parent_dict = {}  # Dictionary to keep track of the parent of each vertex
+    result = dfs_cycle(initial, graph, visited, parent_dict)
+
+    if result is not None:
+        return result[::-1]
 
     for vertex in graph:
         if vertex not in visited:
