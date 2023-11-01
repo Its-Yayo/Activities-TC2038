@@ -22,7 +22,6 @@ Graph = dict[str, list[str]]
 
 
 # Note: It uses the cycled dfs implementation in graph_search.py file!
-# FIXME : Check the dfs_cycle function
 def has_cycle(initial: str, graph: Dict[str, List[str]]) -> Optional[List[str]]:
     visited = set()
     parent_dict = {}  # Dictionary to keep track of the parent of each vertex
