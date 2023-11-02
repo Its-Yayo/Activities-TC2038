@@ -21,7 +21,7 @@ Graph = Dict[str, List[str]]
 
 
 # Implementations for DFS Cycle detection
-def dfs_cycle(vertex: str, graph: Dict[str, List[str]], visited: set, parent_dict: Dict[str, str]) -> Optional[List[str]]:
+def dfs_cycle(vertex: str, graph: Graph, visited: set, parent_dict: Dict[str, str]) -> Optional[List[str]]:
     visited.add(vertex)
 
     for n in graph[vertex]:
