@@ -8,7 +8,7 @@ def main() -> None:
     jugador1 = JugadorD10Estrategico('Maquina')
     jugador2 = JugadorD10Interactivo('Me')
 
-    juego = JuegoD10(jugador1, jugador2)
+    juego = JuegoD10(jugador2, jugador1)
     juego.inicia()
 
 
