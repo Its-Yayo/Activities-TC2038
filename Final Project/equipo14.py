@@ -17,5 +17,9 @@ from dagor import JuegoCaballosBailadores
 
 class JugadorCaballosBailadoresEquipo14(JuegoCaballosBailadores):
     ''' Our player is rising upppp '''
-    pass
+    def heuristica(self, posicion):
+        pass
+
+    def tira(self, posicion):
+        pass
 
