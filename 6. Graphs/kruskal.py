@@ -53,7 +53,21 @@ def remove_edge(graph: WeightedGraph, edge: Edge) -> None:
 
 
 def has_cycle(initial: str, graph: WeightedGraph, visited: Optional[set[str]], parent: Optional[str]) -> bool:
-    ...
+    if visited is None:
+        visited = set()
+    visited.add(initial)
+
+    for vertex, _ in graph[initial]:
+        if vertex in visited:
+            if vertex != parent:
+                return True
+
+        elif has_cycle(vertex, graph, visited, initial):
+            return True
+
+    return False
+
+
 
 
 def main() -> None:
