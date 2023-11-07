@@ -68,6 +68,12 @@ def has_cycle(initial: str, graph: WeightedGraph, visited: Optional[set[str]], p
     return False
 
 
+def kruskal_mst(graph: WeightedGraph) -> tuple[int, WeightedGraph]:
+    queue: list[Edge] = make_heap(graph)
+    result: WeightedGraph = {k: set for k in graph}
+    remaining_edges: int = len(graph) - 1
+
+    return ...
 
 
 def main() -> None:
@@ -88,6 +94,7 @@ def main() -> None:
     s.add(e2)
 
     print(s)
+
 
 
 
