@@ -30,7 +30,9 @@ def make_heap(graph: WeightedGraph) -> list[Edge]:
     neighbors: set[tuple[str, int]]
 
     for u, neighbors in graph.items():
-        ...
+        for v, weight in neighbors:
+            ...
+
 
 
 def main() -> None:
