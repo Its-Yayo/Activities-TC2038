@@ -72,8 +72,14 @@ def kruskal_mst(graph: WeightedGraph) -> tuple[int, WeightedGraph]:
     queue: list[Edge] = make_heap(graph)
     result: WeightedGraph = {k: set for k in graph}
     remaining_edges: int = len(graph) - 1
+    total = 0
+    visited: set[str] = set()
+
+    while remaining_edges:
+        ...
 
     return ...
+
 
 
 def main() -> None:
