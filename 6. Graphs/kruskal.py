@@ -111,7 +111,7 @@ def main() -> None:
 
     print(s)
 
-
+    pprint(kruskal_mst(g1))
 
 
 if __name__ == '__main__':
