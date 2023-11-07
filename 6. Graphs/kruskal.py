@@ -92,8 +92,6 @@ def kruskal_mst(graph: WeightedGraph) -> tuple[int, WeightedGraph]:
     return (total, result)
 
 
-
-
 def main() -> None:
     g1: WeightedGraph = {
         'A': {(('B', 4), ('C', 5))},
