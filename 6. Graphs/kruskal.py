@@ -24,6 +24,10 @@ class Edge(NamedTuple):
         return hash(self.weight) + hash(self.u) + hash(self.v)
 
 
+def make_heap(graph: WeightedGraph) -> list[Edge]:
+    ...
+
+
 def main() -> None:
     g1: WeightedGraph = {
         'A': {(('B', 4), ('C', 5))},
