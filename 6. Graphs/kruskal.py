@@ -37,10 +37,24 @@ def make_heap(graph: WeightedGraph) -> list[Edge]:
     queue: list[Edge] = list(result)
     heapify(queue)
 
-    return result
+    return queue
 
-def add_edge():
+
+def add_edge(graph: WeightedGraph, edge: Edge) -> None:
+    weight, u, v = edge
+    graph[u].add((v, weight))
+    graph[v].add((u, weight))
+
+
+def remove_edge(graph: WeightedGraph, edge: Edge) -> None:
+    weight, u, v = edge
+    graph[u].remove((v, weight))
+    graph[v].remove((u, weight))
+
+
+def has_cycle(initial: str, graph: WeightedGraph, visited: Optional[set[str]], parent: Optional[str]) -> bool:
     ...
+
 
 def main() -> None:
     g1: WeightedGraph = {
