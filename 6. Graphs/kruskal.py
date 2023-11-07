@@ -18,8 +18,7 @@ class Edge(NamedTuple):
             return (self.weight == other.weight
                     and ((self.u == other.u and self.v == other.v)
                     or (self.u == other.v and self.v == other.u)))
-        else:
-            return False
+        return False
 
     def __hash__(self) -> int:
         return hash(self.weight) + hash(self.u) + hash(self.v)
