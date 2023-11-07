@@ -1,7 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3.12
 
 import sys
 from heapq import heapify, heappop
+from pprint import pprint
 from typing import Iterator, Optional, NamedTuple
 
 # FIXME: Fix object type
@@ -33,9 +34,13 @@ def make_heap(graph: WeightedGraph) -> list[Edge]:
         for v, weight in neighbors:
             result.add(Edge(weight, u, v))
 
-    return list(result)
+    queue: list[Edge] = list(result)
+    heapify(queue)
 
+    return result
 
+def add_edge():
+    ...
 
 def main() -> None:
     g1: WeightedGraph = {
