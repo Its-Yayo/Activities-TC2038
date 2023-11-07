@@ -25,7 +25,12 @@ class Edge(NamedTuple):
 
 
 def make_heap(graph: WeightedGraph) -> list[Edge]:
-    ...
+    result: set[Edge] = set()
+    u: str
+    neighbors: set[tuple[str, int]]
+
+    for u, neighbors in graph.items():
+        ...
 
 
 def main() -> None:
