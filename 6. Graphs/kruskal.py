@@ -76,9 +76,21 @@ def kruskal_mst(graph: WeightedGraph) -> tuple[int, WeightedGraph]:
     visited: set[str] = set()
 
     while remaining_edges:
-        ...
+        edge: Edge = heappop(queue)
+        add_edge(result, edge)
 
-    return ...
+        # FIXME: Args fix
+        if edge.u in visited and edge.v in visited and has_cycle(edge.u, result, ):
+            remove_edge(result, edge)
+        else:
+            visited.add(edge.u)
+            visited.add(edge.v)
+
+            total += edge.weight
+            remaining_edges -= 1
+
+    return (total, result)
+
 
 
 
