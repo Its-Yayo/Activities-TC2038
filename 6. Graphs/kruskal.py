@@ -31,6 +31,9 @@ def make_heap(graph: WeightedGraph) -> list[Edge]:
     neighbors: set[tuple[str, int]]
 
     for u, neighbors in graph.items():
+        v: str
+        weight: int
+        
         for v, weight in neighbors:
             result.add(Edge(weight, u, v))
 
@@ -80,7 +83,7 @@ def kruskal_mst(graph: WeightedGraph) -> tuple[int, WeightedGraph]:
         add_edge(result, edge)
 
         # FIXME: Args fix
-        if edge.u in visited and edge.v in visited and has_cycle(edge.u, result, ):
+        if (edge.u in visited and edge.v in visited and has_cycle(edge.u, result)):
             remove_edge(result, edge)
         else:
             visited.add(edge.u)
