@@ -71,7 +71,7 @@ def dfs_cycle(vertex: str, graph: Dict[str, List[str]], visited: set, parent_dic
             cycle.append(n)
             return cycle
 
-    return None
+    return None '''
 
 
 # Implementations for BFS Cycle detection
@@ -98,7 +98,7 @@ def bfs_cycle(vertex: str, parent: str, graph: Graph, visited: set) -> Iterator[
             if n != parent:
                 queue.append((n, current))
 
-    return None '''
+    return None
 
 def main() -> None:
     print(list(dfs('A', g)))
