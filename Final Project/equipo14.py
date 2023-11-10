@@ -28,14 +28,16 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
     def heuristica(self, posicion):
         turno, _, _, rB, rN, cN, cB = posicion
         opponent_king = rN if turno == 'B' else rN
+        opponent_knight = cN if turno == 'B' else cB
         mine = cN if turno == 'N' else cB
 
         # Manhattan Distance for either the other's king or knight.
         # If there's a place where the other's knight can kill mine's, it penalizes the move
-        distance = abs(mine[0] - opponent_king[0]) + abs(mine[1] - opponent_king[1])
-        movements = len(self.posiciones_siguientes(posicion))
+        distance_king = abs(mine[0] - opponent_king[0]) + abs(mine[1] - opponent_king[1])
+        distance_knight = abs(mine[0] - opponent_knight[0]) + abs(mine[1] - opponent_knight[1])
 
-        value = movements - distance
+        movements = len(self.posiciones_siguientes(posicion))
+        value = 2 * movements - 3 * distance_king + distance_knight
 
         return value
 
