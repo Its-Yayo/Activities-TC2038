@@ -37,7 +37,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         distance_knight = abs(mine[0] - opponent_knight[0]) + abs(mine[1] - opponent_knight[1])
 
         movements = len(self.posiciones_siguientes(posicion))
-        value = 2 * movements - 4 * distance_king + distance_knight
+        value = 4 * movements - 2 * distance_king + 3 * distance_knight
 
         return value
 
