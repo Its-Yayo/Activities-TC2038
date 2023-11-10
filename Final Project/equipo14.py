@@ -27,7 +27,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
 
     def heuristica(self, posicion):
         turno, _, _, rB, rN, cN, cB = posicion
-        opponent_king = rN if turno == 'B' else rN
+        opponent_king = rN if turno == 'B' else rB
         opponent_knight = cN if turno == 'B' else cB
         mine = cN if turno == 'N' else cB
 
@@ -37,7 +37,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         distance_knight = abs(mine[0] - opponent_knight[0]) + abs(mine[1] - opponent_knight[1])
 
         movements = len(self.posiciones_siguientes(posicion))
-        value = 2 * movements - 3 * distance_king + distance_knight
+        value = 2 * movements - 4 * distance_king + distance_knight
 
         return value
 
@@ -45,7 +45,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         turno, _, _, _, _, cN, cB = posicion
 
          # It uses a tree to look out for a shot
-        tree = self.arbol(posicion, 3)
+        tree = self.arbol(posicion, 4)
         _, movement = self.minimax(tree, True)
 
         return movement
