@@ -44,7 +44,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
     def tira(self, posicion):
         turno, _, _, _, _, cN, cB = posicion
 
-         # It uses a tree to look out for a DFS until a certain depth
+         # It uses a tree to look out for a shot
         tree = self.arbol(posicion, 3)
         _, movement = self.minimax(tree, True)
 
