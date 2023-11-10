@@ -13,6 +13,7 @@
 # ----------------------------------------------------------
 
 from dagor import *
+from random import random
 
 class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
     ''' Our player is rising upppp.
@@ -26,6 +27,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
     too. '''
 
     def heuristica(self, posicion):
+        '''
         turno, _, _, rB, rN, cN, cB = posicion
         opponent_king = rN if turno == 'B' else rB
         opponent_knight = cN if turno == 'B' else cB
@@ -37,12 +39,15 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         distance_knight = abs(mine[0] - opponent_knight[0]) + abs(mine[1] - opponent_knight[1])
 
         movements = len(self.posiciones_siguientes(posicion))
-        value = 4 * movements - 2 * distance_king + 3 * distance_knight
+        value = 5 * movements - 3 * distance_king - 2 * distance_knight
 
-        return value
+        return value '''
+
+        # Testing a controlled random choice
+        return random()
 
     def tira(self, posicion):
-        turno, _, _, _, _, cN, cB = posicion
+        # turno, _, _, _, _, cN, cB = posicion
 
          # It uses a tree to look out for a shot
         tree = self.arbol(posicion, 4)
