@@ -27,7 +27,6 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
     too. '''
 
     def heuristica(self, posicion):
-        '''
         turno, _, _, rB, rN, cN, cB = posicion
         opponent_king = rN if turno == 'B' else rB
         opponent_knight = cN if turno == 'B' else cB
@@ -41,13 +40,10 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         movements = len(self.posiciones_siguientes(posicion))
         value = 5 * movements - 3 * distance_king - 2 * distance_knight
 
-        return value '''
-
-        # Testing a controlled random choice
-        return random()
+        return value
 
     def tira(self, posicion):
-        # turno, _, _, _, _, cN, cB = posicion
+        turno, _, _, _, _, cN, cB = posicion
 
          # It uses a tree to look out for a shot
         tree = self.arbol(posicion, 4)
