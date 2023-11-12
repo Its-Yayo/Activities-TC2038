@@ -73,11 +73,11 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
 
 
     # Minimax algorithm to make the best move
-    def minimax(self, tree, is_max):
+    def minimax(self, tree, is_max, alpha=float('-inf'), beta=float('inf')):
         if len(tree) == 1:
             return tree[0]
 
-        if is_max:
+        if max:
             max_value = float('-inf')
             max_movement = None
 
@@ -92,7 +92,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
             min_movement = None
 
             for value, movement in tree:
-                if value < min_value:
+                if value > min_value:
                     min_value = value
                 min_movement = movement
 
