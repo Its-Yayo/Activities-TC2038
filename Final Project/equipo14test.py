@@ -23,7 +23,7 @@ class JugadorTest(JugadorCaballosBailadores):
     def tira(self, posicion):
 
         # Depth for an adversarial search
-        max_depth = 3
+        max_depth = 4
         def minimax(posicion, depth, alpha, beta, max_player):
             if depth == 0 or self.triunfo(posicion) is not None:
                 return self.heuristica(posicion), posicion
