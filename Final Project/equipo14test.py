@@ -26,6 +26,7 @@ class JugadorTest(JugadorCaballosBailadores):
 
         return value
 
+
     def tira(self, posicion):
         # Depth for an adversarial search
         max_depth = 4
