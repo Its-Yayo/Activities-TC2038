@@ -15,15 +15,21 @@ class JugadorTest(JugadorCaballosBailadores):
         distance_king = abs(my_knight[0] - opponent_king[0]) + abs(my_knight[1] - opponent_king[1])
         distance_knight = abs(my_knight[0] - opponent_knight[0]) + abs(my_knight[1] - opponent_knight[1])
 
+        # My knight will dominate the center in order to make the best move. It uses the Manhattan distance as well
+        max_m = max(my_knight[0], opponent_king[0], opponent_knight[0])
+        max_n = max(my_knight[1], opponent_king[1], opponent_knight[1])
+        center = (max_m / 2, max_n / 2)
+        distance_center = abs(my_knight[0] - center[0]) + abs(my_knight[1]) - abs(center[1])
+
         # Constant to check if the distance king is zero. It raises an exception when my knight and the other's king are in the same position
-        value = 100 / (distance_king + 1e-6) - distance_knight
+        value = 100 / (distance_king + 1e-6) - distance_knight - distance_center
 
         return value
 
     def tira(self, posicion):
-
         # Depth for an adversarial search
         max_depth = 4
+
         def minimax(posicion, depth, alpha, beta, max_player):
             if depth == 0 or self.triunfo(posicion) is not None:
                 return self.heuristica(posicion), posicion
