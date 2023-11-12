@@ -13,7 +13,6 @@
 # ----------------------------------------------------------
 
 from dagor import *
-from random import random
 
 class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
     ''' Our player is rising upppp.
