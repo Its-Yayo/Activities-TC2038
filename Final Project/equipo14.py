@@ -40,8 +40,12 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
             distance_king += 100
 
         movements = self.posiciones_siguientes(posicion)
-        distance_knight_penalty = sum(1 for m in movements if isinstance(m[0], int) and isinstance(m[1], int) and abs(m[0] - opponent_knight[0]) + abs(m[1] - opponent_knight[1]) > 0)
+        distance_knight_penalty = sum(1 for m in movements if m != opponent_knight)
         value = 5 * len(movements) - 3 * distance_king - 2 * distance_knight_penalty
+
+        if len(movements) > 0:
+            value += 10 if "N" in movements[0] else 0
+
         return value
 
     def tira(self, posicion):
@@ -69,10 +73,11 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
 
 
     # Minimax algorithm to make the best move
-    def minimax(self, tree, max):
+    def minimax(self, tree, is_max, alpha=float('-inf'), beta=float('inf')):
         if len(tree) == 1:
             return tree[0]
 
+        '''
         if max:
             max_value = float('-inf')
             max_movement = None
@@ -92,4 +97,20 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
                     min_value = value
                 min_movement = movement
 
-            return min_value, min_movement
+            return min_value, min_movement '''
+        best_value = float('-inf') if is_max else float('inf')
+        best_move = None
+
+        for value, movement in tree:
+            if is_max:
+                if value > best_value:
+                    best_value = value
+                    best_move = movement
+                alpha = max(alpha, best_value)
+            else:
+                if value < best_value:
+                    best_value = value
+                    best_move = movement
+                beta = min(beta, best_value)
+
+        return best_value, best_move
