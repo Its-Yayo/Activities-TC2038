@@ -14,6 +14,7 @@
 
 from dagor import *
 
+
 class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
     def heuristica(self, posicion):
         turno, _, _, _, _, cN, cB = posicion
