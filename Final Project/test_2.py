@@ -3,7 +3,6 @@
 import sys
 from dagor import JuegoCaballosBailadores, JugadorCaballosBailadoresAleatorio, JugadorCaballosBailadoresInteractivo
 from equipo14 import JugadorCaballosBailadoresEquipo14
-from equipo14test import JugadorTest
 
 
 if __name__ == '__main__':
@@ -11,7 +10,6 @@ if __name__ == '__main__':
     jugador2 = JugadorCaballosBailadoresAleatorio('Random')
     jugador3 = JugadorCaballosBailadoresAleatorio('Random2')
     jugador4 = JugadorCaballosBailadoresInteractivo('Yo')
-    jugador5 = JugadorTest('Equipo14 Test')
 
-    juego = JuegoCaballosBailadores(jugador2, jugador5, 5, 5)
-    juego.inicia(delta_max=2, veces=100)
+    juego = JuegoCaballosBailadores(jugador1, jugador4, 6, 6)
+    juego.inicia()

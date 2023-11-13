@@ -15,84 +15,71 @@
 from dagor import *
 
 class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
-    ''' Our player is rising upppp.
-
-    Basically, our strat follows this: The knight automatically
-    follows a path in other to kill the king. Because of that,
-    the knight will be guided by a generated tree until a certain tree
-    in order to check a possible place where the knight fits in. The
-    Minimax Algorithm is going to choose what's the best position for the knight.
-    It also uses Minimax since our player is assuming the other's knight has an strat
-    too. '''
-
     def heuristica(self, posicion):
-        turno, _, _, rB, rN, cN, cB = posicion
-        opponent_king = rN if turno == 'B' else rB
-        opponent_knight = cN if turno == 'B' else cB
-        mine = cN if turno == 'N' else cB
+        turno, _, _, _, _, cN, cB = posicion
+        my_knight = cB if self.simbolo == 'B' else cN
+        opponent_king = cN if self.simbolo == 'B' else cB
+        opponent_knight = cB if self.simbolo == 'N' else cN
 
-        # Manhattan Distance for the other's king
-        # If there's a place where the other's knight can kill mine's, it penalizes the move
-        distance_king = abs(mine[0] - opponent_king[0]) + abs(mine[1] - opponent_king[1])
+        # Manhattan distance for either my knight and the other's king and knight
+        distance_king = abs(my_knight[0] - opponent_king[0]) + abs(my_knight[1] - opponent_king[1])
+        distance_knight = abs(my_knight[0] - opponent_knight[0]) + abs(my_knight[1] - opponent_knight[1])
 
-        if self.triunfo(posicion):
-            distance_king += 100
+        # My knight will dominate the center in order to make the best move. It uses the Manhattan distance as well
+        max_m = max(my_knight[0], opponent_king[0], opponent_knight[0])
+        max_n = max(my_knight[1], opponent_king[1], opponent_knight[1])
+        center = (max_m / 2, max_n / 2)
+        distance_center = abs(my_knight[0] - center[0]) + abs(my_knight[1]) - abs(center[1])
 
-        movements = self.posiciones_siguientes(posicion)
-        distance_knight_penalty = sum(1 for m in movements if m != opponent_knight)
-        value = 5 * len(movements) - 3 * distance_king - 2 * distance_knight_penalty
-
-        if len(movements) > 0:
-            value += 10 if "N" in movements[0] else 0
+        # Constant to check if the distance king is zero. It raises an exception when my knight and the other's king are in the same position
+        value = 100 / (distance_king + 1e-6) - distance_knight - distance_center
 
         return value
 
+
     def tira(self, posicion):
-        turno, _, _, _, _, cN, cB = posicion
+        # Depth for an adversarial search
+        max_depth = 4
 
-         # It uses a tree to look out for a shot
-        tree = self.arbol(posicion, 4)
-        _, movement = self.minimax(tree, True)
+        def minimax(posicion, depth, alpha, beta, max_player):
+            if depth == 0 or self.triunfo(posicion) is not None:
+                return self.heuristica(posicion), posicion
 
-        return movement
+            if max_player:
+                max_eval = float('-inf')
+                best = None
 
+                for child in self.posiciones_siguientes(posicion):
+                    eval, _ = minimax(child, depth - 1, alpha, beta, False)
 
-    # Additional function that generates a tree in order to check all the possible movements
-    def arbol(self, posicion, depth):
-        if depth == 0 and self.juego.juego_terminado(posicion):
-            return (self.heuristica(posicion), None)
+                    if eval > max_eval:
+                        max_eval = eval
+                        best = child
 
-        movements = self.posiciones_siguientes(posicion)
-        tree = []
+                    alpha = max(alpha, eval)
 
-        for movement in movements:
-            tree.append((self.heuristica(movement), movement))
+                    if beta <= alpha:
+                        break
 
-        return tree
+                return max_eval, best
+            else:
+                min_eval = float('inf')
+                best = None
 
+                for child in self.posiciones_siguientes(posicion):
+                    eval, _ = minimax(child, depth - 1, alpha, beta, True)
 
-    # Minimax algorithm to make the best move
-    def minimax(self, tree, is_max, alpha=float('-inf'), beta=float('inf')):
-        if len(tree) == 1:
-            return tree[0]
+                    if eval < min_eval:
+                        min_eval = eval
+                        best = child
 
-        if max:
-            max_value = float('-inf')
-            max_movement = None
+                    beta = min(beta, eval)
 
-            for value, movement in tree:
-                if value > max_value:
-                    max_value = value
-                max_movement = movement
+                    if beta <= alpha:
+                        break
 
-            return max_value, max_movement
-        else:
-            min_value = float('inf')
-            min_movement = None
+                return min_eval, best
 
-            for value, movement in tree:
-                if value > min_value:
-                    min_value = value
-                min_movement = movement
+        _, best = minimax(posicion, max_depth, float('-inf'), float('inf'), True)
 
-            return min_value, min_movement
+        return best
