@@ -15,6 +15,11 @@
 from dagor import *
 
 class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
+    ''' The basis of our strat is that basically, our knight will always look for the center of the board
+    in order to make the best position, using an adversarial search algorithm like Minimax. It maybe can kill
+    the other's knight or king.When it finds a good position, the knight will follow a path in other to win.
+    Code will be documented. '''
+
     def heuristica(self, posicion):
         turno, _, _, _, _, cN, cB = posicion
         my_knight = cB if self.simbolo == 'B' else cN
