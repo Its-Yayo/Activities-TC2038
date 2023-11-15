@@ -21,6 +21,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
     Code will be documented. '''
 
     def heuristica(self, posicion):
+        # Positions around the puzzle
         turno, _, _, _, _, cN, cB = posicion
         my_knight = cB if self.simbolo == 'B' else cN
         opponent_king = cN if self.simbolo == 'B' else cB
