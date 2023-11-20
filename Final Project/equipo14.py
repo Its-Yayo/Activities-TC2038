@@ -37,32 +37,16 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         center = (max_m / 2, max_n / 2)
         distance_center = abs(my_knight[0] - center[0]) + abs(my_knight[1]) - abs(center[1])
 
-        # Check if my knight is in danger of the other's knight
-        danger = 1 if distance_knight == 2.5 else 0
-
-        # Constant to check if the distance king is zero. My knight has more power over the other's king
-        value = 100 / (distance_king + 1e-6) * 0.5 - distance_knight * 5 - distance_center - danger * 50
+        # Constant to check if the distance king is zero. It raises an exception when my knight and the other's king are in the same position
+        value = 100 / (distance_king + 1e-6) - distance_knight - distance_center
 
         return value
 
 
     def tira(self, posicion):
-        # Positions around the puzzle
-        turno, _, _, _, _, cN, cB = posicion
-        opponent_king = cN if self.simbolo == 'B' else cB
-
         # Depth for an adversarial search
-        max_depth = 6
+        max_depth = 4
 
-        # Nested function that prioritizes moves based on the distance to the opponent's king
-        def prioritize_movement(movement):
-            for m in movement:
-                print(m)  # Debug message
-
-            return sorted(movement, key=lambda m: abs(m[0] - opponent_king[0]) + abs(m[1] - opponent_king[1]))
-
-        # Nested function of the Ninimax algorithm.
-        # It uses alpha-beta prunning to decrese the number of nodes that are evaluated in the Minimax algorithm
         def minimax(posicion, depth, alpha, beta, max_player):
             if depth == 0 or self.triunfo(posicion) is not None:
                 return self.heuristica(posicion), posicion
@@ -71,7 +55,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
                 max_eval = float('-inf')
                 best = None
 
-                for child in prioritize_movement(self.posiciones_siguientes(posicion)):
+                for child in self.posiciones_siguientes(posicion):
                     eval, _ = minimax(child, depth - 1, alpha, beta, False)
 
                     if eval > max_eval:
@@ -88,7 +72,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
                 min_eval = float('inf')
                 best = None
 
-                for child in prioritize_movement(self.posiciones_siguientes(posicion)):
+                for child in self.posiciones_siguientes(posicion):
                     eval, _ = minimax(child, depth - 1, alpha, beta, True)
 
                     if eval < min_eval:
