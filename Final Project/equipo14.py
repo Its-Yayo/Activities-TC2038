@@ -40,19 +40,26 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         # Check if my knight is in danger of the other's knight
         danger = 1 if distance_knight == 2.5 else 0
 
-        # Constant to check if the distance king is zero. It raises an exception when my knight and the other's king are in the same position
+        # Constant to check if the distance king is zero. My knight has more power over the other's king
         value = 100 / (distance_king + 1e-6) * 0.5 - distance_knight * 5 - distance_center - danger * 50
 
         return value
 
 
     def tira(self, posicion):
-        # Depth for an adversarial search
-        max_depth = 4
+        # Positions around the puzzle
+        turno, _, _, _, _, cN, cB = posicion
+        opponent_king = cN if self.simbolo == 'B' else cB
 
-        # Nested function that prioritizes moves
+        # Depth for an adversarial search
+        max_depth = 6
+
+        # Nested function that prioritizes moves based on the distance to the opponent's king
         def prioritize_movement(movement):
-            return sorted(movement, key=lambda m: self.heuristica(m), reverse=True)
+            for m in movement:
+                print(m)  # Debug message
+
+            return sorted(movement, key=lambda m: abs(m[0] - opponent_king[0]) + abs(m[1] - opponent_king[1]))
 
         # Nested function of the Ninimax algorithm.
         # It uses alpha-beta prunning to decrese the number of nodes that are evaluated in the Minimax algorithm
