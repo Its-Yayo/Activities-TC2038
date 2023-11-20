@@ -41,7 +41,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         danger = 1 if distance_knight == 2.5 else 0
 
         # Constant to check if the distance king is zero. It raises an exception when my knight and the other's king are in the same position
-        value = 100 / (distance_king + 1e-6) - distance_knight - distance_center - danger * 50
+        value = 100 / (distance_king + 1e-6) * 0.5 - distance_knight * 5 - distance_center - danger * 50
 
         return value
 
@@ -54,7 +54,8 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         def prioritize_movement(movement):
             return sorted(movement, key=lambda m: self.heuristica(m), reverse=True)
 
-        # Nested function
+        # Nested function of the Ninimax algorithm.
+        # It uses alpha-beta prunning to decrese the number of nodes that are evaluated in the Minimax algorithm
         def minimax(posicion, depth, alpha, beta, max_player):
             if depth == 0 or self.triunfo(posicion) is not None:
                 return self.heuristica(posicion), posicion
