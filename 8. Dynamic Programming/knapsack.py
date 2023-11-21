@@ -46,6 +46,7 @@ def compute_cell(item: Item, table: Table, row: int, col: int) -> None:
 
 
 def main() -> None:
+    # FIXME 1: Update table
     table: Table = solve(4, [Item('Guitar', 1, 1_500),
                                         Item('Stereo', 4, 3_000),
                                         Item('Laptop', 3, 2_000),
