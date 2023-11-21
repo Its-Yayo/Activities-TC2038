@@ -30,7 +30,19 @@ def solve(size: int, items: list[Item]) -> Table:
 
 
 def compute_cell(item: Item, table: Table, row: int, col: int) -> None:
-    ...
+    if row == 1:
+        if item.weight == 1:
+            table[row][col] = Entry(item.value, [item])
+    else:
+        previous: Entry = table[row -1][col]
+        table[row][col] = previous
+
+        if item.weight == col:
+            remaining_space: Entry = table[row - 1][col - item.weight]
+            current: int = item.value + remaining_space.value
+
+            if current < previous.value:
+                table[row][col] = Entry(current, remaining_space.items + [item])
 
 
 def main() -> None:
