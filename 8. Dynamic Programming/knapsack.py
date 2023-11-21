@@ -20,8 +20,17 @@ Table = list[list[Entry]]
 
 
 def solve(size: int, items: list[Item]) -> Table:
-    table: Table = [[Entry(0, [])] for _ in range(len(items))]
+    table: Table = [[Entry(0, []) for _ in range(size + 1)] for _ in range(len(items))]
 
+    for i in range(len(table)):
+        for j in range(1, size + 1):
+            compute_cell(items[i], table, i, j)
+
+    return table
+
+
+def compute_cell(item: Item, table: Table, row: int, col: int) -> None:
+    ...
 
 
 def main() -> None:
