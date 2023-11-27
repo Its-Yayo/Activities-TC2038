@@ -20,6 +20,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
     the other's knight or king.When it finds a good position, the knight will follow a path in other to win.
     Code will be documented. '''
 
+    # Heuristica method. My knight will always try to dominate the center in order to check the best move
     def heuristica(self, posicion):
         # Positions around the puzzle
         turno, _, _, _, _, cN, cB = posicion
@@ -43,10 +44,13 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         return value
 
 
+    # Tira method. It uses Minimax with the alpha-beta prunning in order to make the best moves according to the heuristica method
+    # It uses a default 3 or 4 depth. It has no more cuz of a runtime exception of 2 sec
     def tira(self, posicion):
         # Depth for an adversarial search
         max_depth = 4
 
+        # I forgot, it uses recursion too lol
         def minimax(posicion, depth, alpha, beta, max_player):
             if depth == 0 or self.triunfo(posicion) is not None:
                 return self.heuristica(posicion), posicion
