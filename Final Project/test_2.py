@@ -12,5 +12,5 @@ if __name__ == '__main__':
     jugador4 = JugadorCaballosBailadoresInteractivo('Yo')
     jugador5 = JugadorCaballosBailadoresEquipo14('Equipo14')
 
-    juego = JuegoCaballosBailadores(jugador1, jugador2, 6, 6)
+    juego = JuegoCaballosBailadores(jugador1, jugador2, 9, 5)
     juego.inicia(veces=100, delta_max=2)
