@@ -35,7 +35,7 @@ class JugadorCaballosBailadoresEquipo14(JugadorCaballosBailadores):
         # Check if my knight is in danger of the other's knight
         danger = 1 if distance_knight == 2.5 else 0
 
-        # My knight will dominate the center in order to make the best move. It uses the Manhattan distance as well
+        # My knight will dominate the center. It uses the Manhattan distance as well
         max_m = max(my_knight[0], opponent_king[0], opponent_knight[0])
         max_n = max(my_knight[1], opponent_king[1], opponent_knight[1])
         center = (max_m / 2, max_n / 2)
