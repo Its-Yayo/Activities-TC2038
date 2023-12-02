@@ -2,7 +2,7 @@
 
 In this repo I'll post all my activities. The TC2038'S course is Analysis and Design of Advanced Algorithms. Click [here](https://arielortiz.info/apps/s202313/tc2038/noticias/) if you wanna see more about it. The course is being taught in my college.
 
-All programs will be written in Python. 
+All programs will be written in Python hooyeah
 
 If you wanna clone this repo in your localhost, you must type the following commands
 ```shell
